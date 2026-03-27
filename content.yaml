@@ -1,0 +1,260 @@
+# ============================================================================
+# FluxTech Website Content — flux-tech.de
+# ============================================================================
+#
+# This file is the single source of truth for all visible text on the site.
+#
+# Format conventions:
+#   **bold text**        →  <strong>bold text</strong>
+#   ==highlighted text== →  <mark>highlighted text</mark>
+#   [link text](url)     →  <a href="url">link text</a>
+#   \n\n (blank line)    →  new <span class="p"> paragraph
+#
+# Keys match the element IDs in template.html.
+# Run `python build.py` after editing to regenerate index.html.
+# ============================================================================
+
+# ---------------------------------------------------------------------------
+# Home Section
+# ---------------------------------------------------------------------------
+
+text15: "Converting AI data centre waste heat into electricity."
+
+text26: |
+  Data centers are the energy infrastructure challenge of our time. Currently, their excess heat is vented as waste. But we see it as a fuel source.
+
+  Our technology will harvest data centre heat as an asset and convert it back into electricity to power each AI data centre more efficiently and sustainably.
+
+  As we move toward our MVP and initial pilots, we are building the new standard for energy recovery. **Join us.**
+
+text37: "With thanks to the MotionLab Berlin Hardtech Innovation Accelator Program."
+
+# ---------------------------------------------------------------------------
+# Problem Section
+# ---------------------------------------------------------------------------
+
+text16: "The Problem."
+
+text07: |
+  Data centres are the engine rooms of our time, yet they are hemorrhaging power. In 2024, they consumed 415 terawatt-hours (TWh), a figure projected to grow to 945 TWh by 2030 as AI workloads explode. That’s nearly double the total annual electricity consumption of Germany.
+
+  Regulatory pressure is tightening. The EU’s Energy Efficiency Directive now mandates annual energy performance reporting for data centres over 500kW, with minimum performance standards planned for 2026. Germany has gone further — requiring new data centres to reuse waste heat starting July 2026.
+
+  All the while, the “waste heat" from data centre operations is currently vented into the atmosphere as an unrecovered liability. We see it as a primary untapped fuel source.
+
+text09: |
+  Data Centre Electricity Consumption (2020-2030) (TWh)<br /> <sub>IEA (2025), Global data centre electricity consumption, by equipment, Base Case, 2020-2030, IEA, Paris. Licence: CC BY 4.0</sub>
+
+text30: |
+  **Physics created limitations.**
+
+  So why aren't people converting waste heat into electricity already? The barrier to recovering waste heat as an energy source has always been the "Thermodynamic Dead Zone." At 30–60°C, data center heat is too cool for traditional turbines (ORC) while standard thermoelectric devices often operate at less than 1% efficiency. This physics constraint makes the conversion to electricity economically unviable for the legacy market.
+
+  FluxTech is solving this. By utilizing supercritical CO₂ (sCO₂) as a working fluid, we gain the thermodynamic leverage required to operate at 30–60°C with high efficiency. Combined with our proprietary AI control systems, we can close the loop by capturing the surplus heat and converting it into electricity.
+
+text04: "Find out more about our solution [here](#solution)."
+
+# ---------------------------------------------------------------------------
+# Solution Section
+# ---------------------------------------------------------------------------
+
+text11: "The Solution."
+
+text36: |
+  FluxTech bridges the "Thermodynamic Dead Zone" by converting low-grade server heat into high-value electricity that can help power the data centre in a closed, sustainable loop. While legacy systems require temperatures above 80°C to function, our technology is intended to operate with high efficiency in the 30–60°C range common to modern data centres.
+
+  **The sCO₂ Advantage.**
+
+  We utilize supercritical CO₂ (sCO₂) as a working fluid. Near its critical point, sCO₂ gains immense thermodynamic leverage: small temperature changes trigger massive state changes. This sensitivity allows us to extract energy where traditional turbines find only "waste".
+
+  **Engineered for Reliability.**
+
+  Our thermoacoustic engine contains practically no moving parts. No turbines, no pistons, and minimal mechanical friction. By converting heat into acoustic waves to drive a linear alternator, we ensure operational longevity sustainably.
+
+  **AI-Driven Precision.**
+
+  Operating near the CO₂ critical point is inherently nonlinear. FluxTech’s core proprietary technology utilizes real-time AI control systems to stabilize these dynamics, optimizing efficiency every second based on live operational data. This creates a technical moat: the hardware cannot function without the control system, and the system is trained on data unique to our architecture.
+
+  **Seamless Integration.**
+
+text29: |
+  ==Zero Footprint.== A single unit fits a standard server rack form factor.
+
+  ==Parallel Safety.== We know that uptime for data centres is non-negotiable. So our system is additive. If an engine stops, the cooling loop remains unaffected. That means we can turn a thermal liability into an asset without ever touching the "engine room's" primary mission: keeping the servers running.
+
+  ==Grid Ready.== We turn a thermal liability into a measurable reduction in grid dependency.
+
+text05: "Find out more about our market [here](#market)."
+
+# ---------------------------------------------------------------------------
+# Business Model Section
+# ---------------------------------------------------------------------------
+
+text-bm-title: "The Business Model."
+
+text-bm-intro: |
+  **Energy as a Service.**
+
+  We install, own, and operate the hardware. Customers pay for every kWh generated from their waste heat. All performance risk sits with FluxTech. If the engine produces nothing, the customer pays nothing.
+
+  This model aligns incentives across all three stakeholders: every efficiency improvement flows directly into revenue, with no intermediary step.
+
+text-bm-customer: |
+  **For the Customer.**
+
+  No capital outlay. No operational burden. Revenue from infrastructure they already own. The system is purely additive to existing operations — if the engine stops, the cooling loop is unaffected and the customer owes nothing.
+
+text-bm-fluxtech: |
+  **For FluxTech.**
+
+  Hardware ownership captures the full value of every efficiency gain. Revenue scales directly with technology performance. Fleet ownership enables modular upgrades in the field and circular lifecycle management — replaced units are refurbished and redeployed.
+
+text-bm-investor: |
+  **For the Investor.**
+
+  Recurring revenue tied to a cost the customer already pays. Performance compounds into revenue without new customer acquisition. Fleet growth enables project finance — borrowing against contracted revenue to fund expansion — reducing equity dilution in later phases.
+
+text-bm-pricing: |
+  **Pricing Structure.**
+
+  Two components: a fixed base rate agreed at signing, and a floating component tied to the local electricity market price. The fixed component provides the revenue predictability that project finance requires. The floating component maintains incentive alignment: neither party benefits from gaming the rate.
+
+text-bm-contracts: |
+  ==Three-year initial agreements== with renegotiation at renewal. Early-phase contracts prioritise adoption speed; as the technology matures, terms shift toward longer-duration agreements suited to project finance.
+
+  ==Zero downtime risk to the customer.== If a unit is not generating electricity, the customer pays nothing. The engine decouples from the cooling loop; data centre operations are unaffected.
+
+  ==Fleet scaling via project finance.== Once units generate revenue under contract, the revenue stream becomes an asset for debt financing. Each performing cohort strengthens borrowing terms for the next. Equity funds the company through technical de-risking; growth capital increasingly comes from debt markets.
+
+text-bm-next: "Find out more about how it works [here](#physicsengineering)."
+
+# ---------------------------------------------------------------------------
+# Physics & Engineering Section
+# ---------------------------------------------------------------------------
+
+text22: "The Physics & Engineering."
+
+text17: "FluxTech’s system is a closed-loop thermoacoustic engine designed to integrate directly with existing data centre infrastructure. We utilize a four-section toroidal geometry of steel piping that connects to a data center’s cooling loop without requiring structural modifications."
+
+text18: |
+  **Thermal Capture.**<br /> Low-grade waste heat (30–60°C) is drawn from the server cooling circuit through high-efficiency printed circuit heat exchangers. This thermal energy is transferred to our working fluid: supercritical CO₂ (sCO₂).
+
+text19: |
+  **Acoustic Amplification.**<br /> Near its critical point, sCO₂ becomes hyper-sensitive to temperature changes. As the fluid absorbs heat, it expands and contracts, creating self-sustaining acoustic pressure waves within a resonant cavity. By using sCO₂, we gain the thermodynamic leverage required to operate in the "Dead Zone" where traditional turbines fail.
+
+text20: |
+  **Solid-State Conversion.**<br /> These high-energy acoustic waves drive a linear alternator to generate electricity. Because the conversion is driven by sound rather than rotation, the engine contains no moving parts—no turbines, no pistons, and no bearings. Reliability is structural.
+
+text21: |
+  **AI Optimization.**<br /> Operating near the critical point is inherently nonlinear and unstable. Our proprietary AI control system monitors operational data in real-time, adjusting valve timing and flow rates every second to keep the system in its highest efficiency band.
+
+text28: |
+  **Seamless Integration.**<br /> The system is additive and deployed in parallel. If an engine cycle is interrupted, it automatically decouples, ensuring data center uptime remains unaffected while the remaining thermal energy is passed through for secondary reuse.
+
+text-heatmod: |
+  **Heat Modulation.**<br /> Our core differentiating mechanism. Controlled, phase-locked thermal exchange synchronises heat input with the engine’s acoustic cycle, maximising energy transfer at each oscillation. This architecture has no published precedent and is the subject of our first ZIM feasibility study.
+
+text23: "Find out more about the FluxTech team [here](#team)."
+
+# ---------------------------------------------------------------------------
+# Market Section
+# ---------------------------------------------------------------------------
+
+text10: "The Market."
+
+text27: |
+  The market for FluxTech’s technology is not just large, it is structurally inevitable due to the convergence of two things: surging demand for AI and the avoided load advantage.
+
+  The scale of the opportunity is defined by the explosive growth of data centres, which are projected to consume 945 TWh of electricity by 2030, driven largely by energy-intensive AI workloads.
+
+  The avoided load advantage is the ability to generate power on-site to bypass grid capacity constraints. By reducing the total draw from the grid, operators can lower peak demand charges that currently limit rack density.
+
+  We are seeing immediate market pull for three specific reasons.
+
+text12: |
+  **Economic Compulsion.**<br /> High energy prices, particularly in Europe, make efficiency economically valuable independent of regulation. In our initial addressable segment alone, every percentage point of engine efficiency adds approximately €4M in annual revenue at scale.
+
+text24: |
+  **Commercial Validation.**<br /> We have already secured three signed LOIs with deployment partners Deep Green, Leafcloud, and Heata, who represent 2.6 TWh of recoverable low-temperature waste heat.
+
+text25: |
+  **Binding Sustainability Mandates.**<br /> The EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, with minimum standards planned for 2026. Germany’s Energy Efficiency Act requires new data centres to reuse waste heat — creating direct regulatory demand for energy recovery infrastructure.
+
+text31: "Find out more about our business model [here](#businessmodel)."
+
+# ---------------------------------------------------------------------------
+# Team Section
+# ---------------------------------------------------------------------------
+
+text32: "The Team."
+
+text08: |
+  **John Therrien | Co-Founder & Systems Vision.**
+
+  ==Engineering requires soul.==
+
+  John is a physicist and mechanical engineer (double B.S.) educated at UC Santa Barbara (USA) and FU Berlin. His approach to technology is defined by "Lateral Rigor", i.e. the ability to think around the edges of a complex system to find the non-obvious opportunities that others miss. John’s technical foundation was forged in the demanding environments of high-purity synthesis. As a Research Engineer at PSC, he optimized vacuum induction furnaces to produce silicon carbide (SiC), a critical component in the next generation of power electronics. By developing data-driven thermal recipes, John didn't just follow a process, he refined the "thermal architecture" of the material itself. His leadership in anode production and battery testing proved that in the world of hard-tech, precision is the only path to scalability. At FluxTech, John translates abstract thermodynamic principles into digital infrastructure solutions. He views a data center not as a collection of servers, but as a holistic energy system. His background in physics allows him to navigate phase transitions and non-linear critical-point physics, while his engineering mindset ensures these concepts are "embodied" into hardware that solves the heat-density crisis of the AI era. Beyond the lab, John is a musician and athlete. He’s an experienced acrobat (training under co-founder Florian) and a competitive water polo player.
+
+  *"Innovation happens at the intersection of disciplines. I don’t see waste heat as a liability, I see it as one engineering and physics gap away from becoming an asset. My goal is to finally bridge that gap.”*
+
+text14: |
+  **Florian Schmack | Co-Founder & Materials Lead.**
+
+  ==Materials define limits. Engineering overcomes them.==
+
+  Flo is a materials scientist with a master’s degree from TU Berlin, specializing in the processing of light metals and high-purity synthesis. His career has been defined by a focus on the microscopic details that dictate macroscopic efficiency. Before co-founding FluxTech, Florian served as a Research Associate in the battery technology sector. At PSC Technologies, he pioneered a method for identifying silicon impurities at levels below 0.1%, a breakthrough that eliminated false positives in battery testing and established a new standard for material analysis. His background spans the full spectrum of industrial reliability, from optimizing anode materials for Li-ion batteries to ensuring the structural integrity of steel fasteners. In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specializing in Machine Learning and Cloud Computing. This unique intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ (sCO₂) systems. He is dedicated to bridging the "Thermodynamic Dead Zone," transforming what the industry currently vents as waste into a scalable, high-efficiency energy resource. Outside of the lab, Flo is an acrobatics trainer, a discipline that (much like his engineering) requires a perfect balance of physics, stability, and controlled energy.
+
+  *"We are not just managing heat, we are harvesting a previously invisible resource. Let’s turn the waste of today into the power of tomorrow."*
+
+text13: "Find out more about what's next for FluxTech [here](#ask)."
+
+# ---------------------------------------------------------------------------
+# Ask Section
+# ---------------------------------------------------------------------------
+
+text03: "The Ask."
+
+text02: |
+  **Strategic Investment Round: Single Partner.**
+
+  FluxTech is seeking a single check of €80k–€120k to join €55k in already committed capital.
+
+  This is not an operating round, it is a leverage round.
+
+  We are not assembling a syndicate. We are looking for one partner with the conviction to activate a capital structure where €1 of equity unlocks approximately €2.50 of non-dilutive grants.
+
+  This investment triggers a cascade of public funding, amplifying the total deployment to ~€400k without further dilution.
+
+text39: |
+  **The Funding Cascade.**
+
+  By securing a single strategic partner, we unlock two parallel federal workstreams that transition FluxTech from feasibility to industrial readiness:
+
+text06: |
+  ==GründungsBONUS Plus (Berlin)==: Triggers up to €50k in matched grant funding directly from this private raise.
+
+  ==Two ZIM Feasibility Studies (Federal)==: Provides up to €175k in R&D funding to validate our two primary technical risks.
+
+text34: "Total Strategic Deployment: Approximately €400k on a total dilutive base of only €135k–€175k."
+
+text35: |
+  **Upcoming Milestones.**
+
+  The funded program runs two parallel workstreams over a 12-month cycle to retire core research risks:
+
+text01: |
+  ==Feasibility Study 1 | Heat Modulation==: Validates our controlled, phase-locked heat exchange on the existing research platform.
+
+  ==Feasibility Study 2 | Near-Critical sCO₂==: Integrates supercritical sCO₂ to activate the engine’s thermodynamic leverage at target temperatures.
+
+text38: |
+  **The Technical Gate.**
+
+  Successful completion of these studies positions FluxTech for the next funding layer. This includes major ZIM R&D grants (up to €490k) and SPRIND (up to €1M), all without requiring additional equity.
+
+text33: |
+  We are looking for a partner who understands the value of entering at maximum leverage.
+
+  **Join Us.**
+
+  Email [john@flux-tech.de](mailto:john@flux-tech.de) to set up a meeting.
