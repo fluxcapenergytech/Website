@@ -29,8 +29,6 @@ def markdown_to_html(text):
     """Convert markdown-style inline formatting to HTML."""
     # Bold: **text** → <strong>text</strong>
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
-    # Italic: *text* → <em>text</em>
-    text = re.sub(r'(?<!\*)\*(?!\*)(.+?)(?<!\*)\*(?!\*)', r'<em>\1</em>', text)
     # Highlight: ==text== → <mark>text</mark>
     text = re.sub(r'==(.+?)==', r'<mark>\1</mark>', text)
     # Links: [text](url) → <a href="url">text</a>
@@ -94,14 +92,15 @@ def build(check_only=False):
         errors = True
 
     if orphaned_in_template:
-        print(f"WARNING: Template placeholders with no matching YAML key: {sorted(orphaned_in_template)}")
-        errors = True
+        print(f"ERROR: Template placeholders with no matching YAML key: {sorted(orphaned_in_template)}")
+        print("Build blocked — these would appear as literal {{key}} text on the site.")
+        sys.exit(1)
 
-    if not errors:
+    if not missing_in_template:
         print(f"OK: {len(yaml_keys)} YAML keys match {len(placeholders)} template placeholders.")
 
     if check_only:
-        sys.exit(1 if errors else 0)
+        sys.exit(0)
 
     # Build
     output = template
