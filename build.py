@@ -2,17 +2,35 @@
 """
 Build script for flux-tech.de.
 
-Reads content.yaml, processes markdown-style formatting, and injects
-the result into template.html to produce index.html.
+Reads content.yaml, assembles section partials from sections/, processes
+markdown-style formatting, and injects content to produce index.html.
 
 Usage:
     python build.py            # Build index.html
     python build.py --check    # Dry run: validate YAML keys match template placeholders
 """
 
+import os
 import re
 import sys
 import yaml
+
+# Ordered list of section partials that compose the full template.
+# To reorder sections or add new ones, edit this list.
+SECTION_ORDER = [
+    "head",
+    "home",
+    "problem",
+    "solution",
+    "businessmodel",
+    "physicsengineering",
+    "market",
+    "team",
+    "ask",
+    "closing",
+]
+
+SECTIONS_DIR = "sections"
 
 
 def load_content(path="content.yaml"):
@@ -20,9 +38,14 @@ def load_content(path="content.yaml"):
         return yaml.safe_load(f)
 
 
-def load_template(path="template.html"):
-    with open(path, "r") as f:
-        return f.read()
+def load_template():
+    """Assemble the full template by concatenating section partials in order."""
+    parts = []
+    for name in SECTION_ORDER:
+        path = os.path.join(SECTIONS_DIR, f"{name}.html")
+        with open(path, "r") as f:
+            parts.append(f.read())
+    return "".join(parts)
 
 
 def markdown_to_html(text):
