@@ -36,12 +36,13 @@ text37: "With thanks to the MotionLab Berlin Hardtech Innovation Accelerator Pro
 text16: "The Problem."
 
 text07: |
-  Data centres are the engine rooms of our time, yet they are hemorrhaging power. In 2024, they consumed 415 terawatt-hours (TWh), a figure projected to grow to 945 TWh by 2030 as AI workloads explode. That’s nearly double the total annual electricity consumption of Germany.
+  Data centres are the engine rooms of our time, yet they are running into a hard wall: power. Jensen Huang identifies it as the single biggest bottleneck for scaling AI. Data centres consumed 415 TWh of electricity in 2024 — projected to reach 945 TWh by 2030 as AI workloads explode. That is nearly double Germany’s total annual electricity consumption.
 
-  Regulatory pressure is tightening. The EU’s Energy Efficiency Directive now mandates annual energy performance reporting for data centres over 500kW, with minimum performance standards planned for 2026. Germany has gone further — requiring new data centres to reuse waste heat starting July 2026.
+  The constraint is not just total energy — it is the grid’s ability to deliver it. New data centres face multi-year waits for grid connections. Operators are hitting peak demand ceilings that limit how many racks they can fill. Every kilowatt-hour generated on-site is a kilowatt-hour not drawn from the grid — reducing dependency, lowering peak demand charges, and unlocking rack density that grid constraints currently block.
 
-  All the while, the “waste heat" from data centre operations is currently vented into the atmosphere as an unrecovered liability. We see it as a primary untapped fuel source.
+  Meanwhile, roughly 40% of that consumed power goes to cooling, which vents heat as waste. All the while, the EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, and Germany’s Energy Efficiency Act requires new data centres to reuse waste heat from July 2026. Regulation is compounding economic pressure that already exists.
 
+  The heat is there. The need for power is desperate. No viable technology bridges the two.
 text09: |
   Data Centre Electricity Consumption (2020-2030) (TWh)<br /> <sub>IEA (2025), Global data centre electricity consumption, by equipment, Base Case, 2020-2030, IEA, Paris. Licence: CC BY 4.0</sub>
 
@@ -189,23 +190,25 @@ text31: "Find out more about our business model [here](#businessmodel)."
 text32: "The Team."
 
 text08: |
-  **John Therrien | Co-Founder & Systems Vision.**
+  **John Therrien | Co-Founder & Engine Architect.**
 
-  ==Engineering requires soul.==
+  ==Where thermodynamics meets control theory.==
 
-  John is a physicist and mechanical engineer (double B.S.) educated at UC Santa Barbara (USA) and FU Berlin. His approach to technology is defined by "Lateral Rigor", i.e. the ability to think around the edges of a complex system to find the non-obvious opportunities that others miss. John’s technical foundation was forged in the demanding environments of high-purity synthesis. As a Research Engineer at PSC, he optimized vacuum induction furnaces to produce silicon carbide (SiC), a critical component in the next generation of power electronics. By developing data-driven thermal recipes, John didn't just follow a process, he refined the "thermal architecture" of the material itself. His leadership in anode production and battery testing proved that in the world of hard-tech, precision is the only path to scalability. At FluxTech, John translates abstract thermodynamic principles into digital infrastructure solutions. He views a data center not as a collection of servers, but as a holistic energy system. His background in physics allows him to navigate phase transitions and non-linear critical-point physics, while his engineering mindset ensures these concepts are "embodied" into hardware that solves the heat-density crisis of the AI era. Beyond the lab, John is a musician and athlete. He’s an experienced acrobat (training under co-founder Florian) and a competitive water polo player.
+  John holds a double major in Physics and Mechanical Engineering from UC Santa Barbara — a five-year program spanning two colleges. That dual foundation converges directly in the nonlinear physics at the core of FluxTech’s engine architecture.
 
-  *"Innovation happens at the intersection of disciplines. I don’t see waste heat as a liability, I see it as one engineering and physics gap away from becoming an asset. My goal is to finally bridge that gap.”*
+  Before FluxTech, John spent five years as a professional musician, an experience that sharpened pattern recognition, rapid iteration, and comfort with ambiguity. The engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion — a problem the industry had written off.
 
+  *“I’m obsessed with this problem. Real ecological impact, a clear economic case, and the kind of deep interdisciplinary physics that makes it genuinely hard to solve. That’s the combination I’ve been looking for my whole career.”*
 text14: |
   **Florian Schmack | Co-Founder & Materials Lead.**
 
   ==Materials define limits. Engineering overcomes them.==
 
-  Flo is a materials scientist with a master’s degree from TU Berlin, specializing in the processing of light metals and high-purity synthesis. His career has been defined by a focus on the microscopic details that dictate macroscopic efficiency. Before co-founding FluxTech, Florian served as a Research Associate in the battery technology sector. At PSC Technologies, he pioneered a method for identifying silicon impurities at levels below 0.1%, a breakthrough that eliminated false positives in battery testing and established a new standard for material analysis. His background spans the full spectrum of industrial reliability, from optimizing anode materials for Li-ion batteries to ensuring the structural integrity of steel fasteners. In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specializing in Machine Learning and Cloud Computing. This unique intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ (sCO₂) systems. He is dedicated to bridging the "Thermodynamic Dead Zone," transforming what the industry currently vents as waste into a scalable, high-efficiency energy resource. Outside of the lab, Flo is an acrobatics trainer, a discipline that (much like his engineering) requires a perfect balance of physics, stability, and controlled energy.
+  Flo holds a master’s degree in materials science from TU Berlin, specialising in light metals and high-purity synthesis. At PSC Technologies, he pioneered a method for identifying silicon impurities below 0.1% — a breakthrough that eliminated false positives in battery testing and set a new standard for material analysis.
 
-  *"We are not just managing heat, we are harvesting a previously invisible resource. Let’s turn the waste of today into the power of tomorrow."*
+  In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specialising in Machine Learning and Cloud Computing. This intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ systems and the construction of the TRL 4 research platform.
 
+  *“We are not just managing heat, we are harvesting a previously invisible resource. Let’s turn the waste of today into the power of tomorrow.”*
 text13: "Find out more about what's next for FluxTech [here](#ask)."
 
 # ---------------------------------------------------------------------------
@@ -224,7 +227,7 @@ text02: |
 text39: |
   **The Funding Cascade.**
 
-  By securing a single strategic partner, we unlock two parallel federal workstreams that transition FluxTech from feasibility to industrial readiness:
+  This capital unlocks two parallel federal workstreams that transition FluxTech from feasibility to industrial readiness:
 
 text06: |
   ==GründungsBONUS Plus (Berlin)==: Triggers up to €50k in matched grant funding directly from this private raise.
