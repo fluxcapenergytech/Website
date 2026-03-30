@@ -3323,6 +3323,7 @@
               </li>
             </ul>
           </section>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
           <section id="ask-section">
             <ul id="buttons08" class="buttons-component instance-8">
               <li><a href="#home" class="n01" role="button">Back</a></li>
@@ -3330,8 +3331,330 @@
             <h2 id="text03" class="text-component instance-3">The Ask.</h2>
             <p id="text02" class="text-component instance-2"><span class="p"><strong>Strategic Investment Round.</strong></span><span class="p">FluxTech is raising up to €500k to join committed capital.</span><span class="p">This is a leverage round. Every euro of equity activates a cascade of non-dilutive grants, scaling total deployment from ~€400k to ~€1M depending on round size.</span></p>
             <p id="text39" class="text-component instance-39"><span class="p"><strong>The Funding Cascade.</strong></span><span class="p">By securing a single strategic partner, we unlock two parallel federal workstreams that transition FluxTech from feasibility to industrial readiness:</span></p>
-            <p id="text06" class="text-component instance-6"><span class="p"><mark>GründungsBONUS Plus (Berlin)</mark>: Triggers up to €50k in matched grant funding directly from this private raise.</span><span class="p"><mark>Two ZIM Feasibility Studies (Federal)</mark>: Provides up to €140k in R&amp;D funding to validate our two primary technical risks.</span><span class="p"><mark>ZIM R&amp;D Kooperationsprojekt (Federal)</mark>: Scales with co-funding capacity. Up to €252k for FluxTech plus up to €280k for a research partner.</span></p>
-            <p id="text34" class="text-component instance-34">Total Strategic Deployment: From ~€400k to ~€1M, depending on round size.</p>
+            <p id="text06" class="text-component instance-6" style="display:none"><span class="p"><mark>GründungsBONUS Plus (Berlin)</mark>: Triggers up to €50k in matched grant funding directly from this private raise.</span><span class="p"><mark>Two ZIM Feasibility Studies (Federal)</mark>: Provides up to €140k in R&amp;D funding to validate our two primary technical risks.</span><span class="p"><mark>ZIM R&amp;D Kooperationsprojekt (Federal)</mark>: Scales with co-funding capacity. Up to €252k for FluxTech plus up to €280k for a research partner.</span></p>
+            <p id="text34" class="text-component instance-34" style="display:none">Total Strategic Deployment: From ~€400k to ~€1M, depending on round size.</p>
+
+            <!-- Grant Leverage Calculator Widget -->
+            <style>
+              .grant-widget {
+                font-family: 'Poppins', sans-serif;
+                max-width: 800px;
+                margin: 0 auto 2em;
+                padding: 1.5em;
+                background: #1a1d21;
+                border-radius: 12px;
+                color: #fff;
+              }
+              .grant-widget * { box-sizing: border-box; }
+              .grant-widget h3 {
+                font-size: 1.1em;
+                font-weight: 600;
+                margin: 0 0 0.2em;
+                background: linear-gradient(135deg, #0096CE, #00B573);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+              }
+              .grant-widget .gw-slider-row {
+                display: flex;
+                align-items: center;
+                gap: 1em;
+                margin-bottom: 1.2em;
+              }
+              .grant-widget .gw-slider-label {
+                font-size: 0.82em;
+                color: #aaa;
+                white-space: nowrap;
+              }
+              .grant-widget .gw-slider-value {
+                font-size: 1.3em;
+                font-weight: 700;
+                min-width: 80px;
+                text-align: right;
+                white-space: nowrap;
+              }
+              .grant-widget input[type="range"] {
+                -webkit-appearance: none;
+                appearance: none;
+                flex: 1;
+                height: 6px;
+                background: #333;
+                border-radius: 3px;
+                outline: none;
+                cursor: pointer;
+              }
+              .grant-widget input[type="range"]::-webkit-slider-thumb {
+                -webkit-appearance: none;
+                appearance: none;
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #0096CE, #00B573);
+                border: 2px solid #fff;
+                cursor: pointer;
+              }
+              .grant-widget input[type="range"]::-moz-range-thumb {
+                width: 20px;
+                height: 20px;
+                border-radius: 50%;
+                background: linear-gradient(135deg, #0096CE, #00B573);
+                border: 2px solid #fff;
+                cursor: pointer;
+              }
+              .grant-widget .gw-metrics {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr;
+                gap: 0.8em;
+                margin-bottom: 1.2em;
+              }
+              @media (max-width: 600px) {
+                .grant-widget .gw-metrics {
+                  grid-template-columns: 1fr 1fr;
+                }
+              }
+              .grant-widget .gw-card {
+                background: #25282d;
+                border-radius: 8px;
+                padding: 0.8em;
+                text-align: center;
+              }
+              .grant-widget .gw-card-label {
+                font-size: 0.7em;
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+                color: #888;
+                margin-bottom: 0.3em;
+              }
+              .grant-widget .gw-card-value {
+                font-size: 1.25em;
+                font-weight: 700;
+              }
+              .grant-widget .gw-card-value.accent {
+                background: linear-gradient(135deg, #0096CE, #00B573);
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;
+                background-clip: text;
+              }
+              .grant-widget .gw-legend {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 1em;
+                margin-bottom: 0.8em;
+                font-size: 0.75em;
+                color: #aaa;
+              }
+              .grant-widget .gw-legend-item {
+                display: flex;
+                align-items: center;
+                gap: 0.4em;
+              }
+              .grant-widget .gw-legend-swatch {
+                width: 12px;
+                height: 12px;
+                border-radius: 2px;
+                display: inline-block;
+                flex-shrink: 0;
+              }
+              .grant-widget .gw-chart-wrap {
+                position: relative;
+                width: 100%;
+                height: 280px;
+              }
+              .grant-widget .gw-footer {
+                margin-top: 1em;
+                font-size: 0.75em;
+                color: #777;
+                text-align: center;
+                line-height: 1.5;
+              }
+            </style>
+
+            <div class="grant-widget" id="grantWidget">
+              <h3>Grant Leverage Calculator</h3>
+
+              <div class="gw-slider-row">
+                <span class="gw-slider-label">Investment size</span>
+                <input type="range" id="gwSlider" min="100" max="500" step="10" value="250" />
+                <span class="gw-slider-value" id="gwSliderVal">€250k</span>
+              </div>
+
+              <div class="gw-metrics">
+                <div class="gw-card">
+                  <div class="gw-card-label">Total Dilutive</div>
+                  <div class="gw-card-value" id="gwDilutive">—</div>
+                </div>
+                <div class="gw-card">
+                  <div class="gw-card-label">Total Non-Dilutive</div>
+                  <div class="gw-card-value" id="gwNonDilutive">—</div>
+                </div>
+                <div class="gw-card">
+                  <div class="gw-card-label">Total Deployment</div>
+                  <div class="gw-card-value" id="gwDeployment">—</div>
+                </div>
+                <div class="gw-card">
+                  <div class="gw-card-label">Grant Leverage</div>
+                  <div class="gw-card-value accent" id="gwLeverage">—</div>
+                </div>
+              </div>
+
+              <div class="gw-legend">
+                <span class="gw-legend-item"><span class="gw-legend-swatch" style="background:#5F5E5A"></span> Private Capital</span>
+                <span class="gw-legend-item"><span class="gw-legend-swatch" style="background:#1D9E75"></span> GründungsBONUS</span>
+                <span class="gw-legend-item"><span class="gw-legend-swatch" style="background:#3266ad"></span> ZIM Feasibility</span>
+                <span class="gw-legend-item"><span class="gw-legend-swatch" style="background:#7F77DD"></span> ZIM R&amp;D</span>
+              </div>
+
+              <div class="gw-chart-wrap">
+                <canvas id="gwChart"></canvas>
+              </div>
+
+              <div class="gw-footer">
+                Next non-dilutive layer: <strong>SPRIND</strong> (up to €1M) · <strong>EIC Pathfinder</strong> (up to €3M) — no additional equity required
+              </div>
+            </div>
+
+            <script>
+            (function() {
+              /* ---- Grant cascade formulas ---- */
+              var COMMITTED = 55;
+              var BONUS = 50;
+              var FEAS_GRANT = 140;
+              var FEAS_COFUND = 60;
+              var OPERATING_RESERVE = 80;
+              var BUFFER = 20;
+
+              function calc(newCheckK) {
+                var totalDilutive = COMMITTED + newCheckK;
+                var coFundAvail = Math.max(0, totalDilutive - FEAS_COFUND - OPERATING_RESERVE - BUFFER);
+                var zimRD = Math.min(coFundAvail * (45 / 55), 252);
+                var totalNonDilutive = BONUS + FEAS_GRANT + zimRD;
+                var totalDeployment = totalDilutive + totalNonDilutive;
+                var leverage = totalNonDilutive / totalDilutive;
+                return { totalDilutive: totalDilutive, zimRD: zimRD, totalNonDilutive: totalNonDilutive, totalDeployment: totalDeployment, leverage: leverage };
+              }
+
+              function fmt(v) { return '€' + Math.round(v) + 'k'; }
+
+              /* ---- Chart.js setup ---- */
+              var steps = [];
+              for (var s = 100; s <= 500; s += 50) steps.push(s);
+              var labels = steps.map(function(v) { return '€' + v + 'k'; });
+
+              /* Optimal zone plugin */
+              var optimalZonePlugin = {
+                id: 'optimalZone',
+                beforeDraw: function(chart) {
+                  var ctx = chart.ctx;
+                  var xScale = chart.scales.x;
+                  var yScale = chart.scales.y;
+                  /* €200k = index 2, €350k = index 5 */
+                  var x1 = xScale.getPixelForValue(2);
+                  var x2 = xScale.getPixelForValue(5);
+                  ctx.save();
+                  ctx.fillStyle = 'rgba(0,150,206,0.08)';
+                  ctx.fillRect(x1, yScale.top, x2 - x1, yScale.bottom - yScale.top);
+                  ctx.fillStyle = 'rgba(255,255,255,0.35)';
+                  ctx.font = '11px Poppins, sans-serif';
+                  ctx.textAlign = 'center';
+                  ctx.fillText('Optimal Zone', (x1 + x2) / 2, yScale.top + 16);
+                  ctx.restore();
+                }
+              };
+
+              function buildDatasets() {
+                var priv = [], bonus = [], feas = [], zim = [];
+                for (var i = 0; i < steps.length; i++) {
+                  var r = calc(steps[i]);
+                  priv.push(r.totalDilutive);
+                  bonus.push(BONUS);
+                  feas.push(FEAS_GRANT);
+                  zim.push(Math.round(r.zimRD * 10) / 10);
+                }
+                return [
+                  { label: 'Private Capital', data: priv, backgroundColor: '#5F5E5A' },
+                  { label: 'GründungsBONUS', data: bonus, backgroundColor: '#1D9E75' },
+                  { label: 'ZIM Feasibility', data: feas, backgroundColor: '#3266ad' },
+                  { label: 'ZIM R&D', data: zim, backgroundColor: '#7F77DD' }
+                ];
+              }
+
+              var ctx = document.getElementById('gwChart').getContext('2d');
+              var chart = new Chart(ctx, {
+                type: 'bar',
+                data: { labels: labels, datasets: buildDatasets() },
+                plugins: [optimalZonePlugin],
+                options: {
+                  responsive: true,
+                  maintainAspectRatio: false,
+                  plugins: { legend: { display: false }, tooltip: { enabled: true } },
+                  scales: {
+                    x: {
+                      stacked: true,
+                      grid: { color: 'rgba(255,255,255,0.06)' },
+                      ticks: { color: '#888', font: { family: 'Poppins', size: 11 } }
+                    },
+                    y: {
+                      stacked: true,
+                      grid: { color: 'rgba(255,255,255,0.06)' },
+                      ticks: { color: '#888', font: { family: 'Poppins', size: 11 }, callback: function(v) { return '€' + v + 'k'; } },
+                      title: { display: true, text: 'Total Capital (€k)', color: '#888', font: { family: 'Poppins', size: 12 } }
+                    }
+                  }
+                }
+              });
+
+              /* ---- Highlight current slider value bar ---- */
+              function highlightBar(checkK) {
+                var idx = steps.indexOf(checkK);
+                chart.data.datasets.forEach(function(ds) {
+                  var colors = [];
+                  for (var i = 0; i < steps.length; i++) {
+                    colors.push(i === idx ? ds.backgroundColor : ds.backgroundColor + '55');
+                  }
+                  ds.backgroundColor = colors;
+                });
+              }
+
+              /* ---- Update metrics ---- */
+              function update(checkK) {
+                var r = calc(checkK);
+                document.getElementById('gwSliderVal').textContent = fmt(checkK);
+                document.getElementById('gwDilutive').textContent = fmt(r.totalDilutive);
+                document.getElementById('gwNonDilutive').textContent = fmt(r.totalNonDilutive);
+                document.getElementById('gwDeployment').textContent = fmt(r.totalDeployment);
+                document.getElementById('gwLeverage').textContent = r.leverage.toFixed(2) + 'x';
+
+                /* Rebuild base colors before highlighting */
+                var ds = buildDatasets();
+                for (var i = 0; i < chart.data.datasets.length; i++) {
+                  chart.data.datasets[i].data = ds[i].data;
+                  chart.data.datasets[i].backgroundColor = ds[i].backgroundColor;
+                }
+                highlightBar(checkK);
+                chart.update();
+              }
+
+              /* Find nearest step for slider (step=10, chart step=50) */
+              function nearestStep(v) {
+                var best = steps[0];
+                for (var i = 1; i < steps.length; i++) {
+                  if (Math.abs(steps[i] - v) < Math.abs(best - v)) best = steps[i];
+                }
+                return best;
+              }
+
+              /* ---- Slider listener ---- */
+              var slider = document.getElementById('gwSlider');
+              slider.addEventListener('input', function() {
+                update(parseInt(this.value, 10));
+              });
+
+              /* Initial render */
+              update(250);
+            })();
+            </script>
+            <!-- End Grant Leverage Calculator Widget -->
+
             <p id="text35" class="text-component instance-35"><span class="p"><strong>Upcoming Milestones.</strong></span><span class="p">The funded program runs two parallel workstreams over a 12-month cycle to retire core research risks:</span></p>
             <p id="text01" class="text-component instance-1"><span class="p"><mark>Feasibility Study 1 | Heat Modulation</mark>: Validates our controlled, phase-locked heat exchange on the existing research platform.</span><span class="p"><mark>Feasibility Study 2 | Near-Critical sCO₂</mark>: Integrates supercritical sCO₂ to activate the engine’s thermodynamic leverage at target temperatures.</span></p>
             <p id="text38" class="text-component instance-38"><span class="p"><strong>The Technical Gate.</strong></span><span class="p">Successful completion of these studies positions FluxTech for the next funding layer. This includes SPRIND (up to €1M) and EIC Pathfinder (up to €3M), all without requiring additional equity.</span></p>
