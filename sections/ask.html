@@ -208,7 +208,7 @@
                 var zimRD = Math.min(coFundAvail * (45 / 55), 252);
                 var totalNonDilutive = BONUS + FEAS_GRANT + zimRD;
                 var totalDeployment = totalDilutive + totalNonDilutive;
-                var leverage = totalNonDilutive / totalDilutive;
+                var leverage = totalDeployment / totalDilutive;
                 return { totalDilutive: totalDilutive, zimRD: zimRD, totalNonDilutive: totalNonDilutive, totalDeployment: totalDeployment, leverage: leverage };
               }
 
