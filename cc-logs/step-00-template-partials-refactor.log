@@ -1,0 +1,10 @@
+[BATCH] Committed: d4d27eb "Refactor template.html into section partials, update build.py and CLAUDE.md"
+
+Done. Here's what was completed:
+
+- **Split `template.html`** into 10 partials in `sections/`: `head`, `home`, `problem`, `solution`, `businessmodel`, `physicsengineering`, `market`, `team`, `ask`, `closing`
+- **Updated `build.py`** with a `SECTION_ORDER` list that concatenates partials before placeholder replacement — all existing markdown/HTML processing logic preserved unchanged
+- **Verified byte-identical output** — `diff` of before/after `index.html` shows zero differences
+- **Updated `CLAUDE.md`** — architecture diagram, content pipeline, build script docs all reflect the new `sections/` structure
+- **Deleted `template.html`** — no longer needed
+- **Committed** as `d4d27eb`

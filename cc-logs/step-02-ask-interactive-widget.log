@@ -1,0 +1,11 @@
+[BATCH] Committed: a549baa "Add interactive grant leverage widget to Ask section with Chart.js"
+
+Done. The widget is live in `sections/ask.html` with:
+
+- **Slider** (€100k–€500k, step €10k, default €250k) with gradient-styled thumb
+- **4 metric cards** — Total Dilutive, Total Non-Dilutive, Total Deployment, Grant Leverage
+- **Stacked bar chart** (Chart.js) with Private Capital, GründungsBONUS, ZIM Feasibility, ZIM R&D stacks
+- **Optimal Zone overlay** (€200k–€350k) via Chart.js plugin
+- **Footer** with SPRIND + EIC Pathfinder note
+- Static `{{text06}}` and `{{text34}}` hidden with `display:none` (placeholders preserved for build.py)
+- All CSS scoped under `.grant-widget`, all JS inline in an IIFE

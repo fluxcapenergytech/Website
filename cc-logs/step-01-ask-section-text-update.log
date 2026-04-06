@@ -1,0 +1,7 @@
+[BATCH] Committed: 1df5ed7 "Update Ask section: widen round to €500k, correct ZIM figures, add ZIM R&D and EIC Pathfinder"
+
+All done. Changes committed as `1df5ed7`:
+- **text02**: Widened round to €500k, removed "single check" and syndicate language
+- **text06**: Corrected ZIM feasibility to €140k, added ZIM R&D Kooperationsprojekt (€252k + €280k partner)
+- **text34**: Updated deployment range to ~€400k–~€1M
+- **text38**: Replaced "major ZIM R&D grants (€490k)" with SPRIND (€1M) and EIC Pathfinder (€3M)
