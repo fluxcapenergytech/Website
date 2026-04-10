@@ -3166,7 +3166,10 @@
             <div id="image15" class="image-component instance-15">
               <span class="frame"><img src="assets/images/logo-motionlab.png?v=e1d5cfd8" alt="" /></span>
             </div>
-            <p id="text37" class="text-component instance-37">With thanks to the MotionLab Berlin Hardtech Innovation Accelerator Program.</p>
+            <div id="image-fel" class="image-component instance-15">
+              <span class="frame"><img src="assets/images/logo-future-energy-labs.png" alt="" /></span>
+            </div>
+            <p id="text37" class="text-component instance-37">MotionLab Berlin hardtech accelerator graduates. Based at Future Energy Labs (dena, Berlin).</p>
             <ul id="links02" class="links-component instance-2">
               <li class="n01">
                 <a href="https://shamsara.carrd.co/">Strategic Communications, Brand, and Website by Sham Sara.</a>
@@ -3329,10 +3332,10 @@
               <li><a href="#home" class="n01" role="button">Back</a></li>
             </ul>
             <h2 id="text03" class="text-component instance-3">The Ask.</h2>
-            <p id="text02" class="text-component instance-2"><span class="p"><strong>Strategic Investment Round.</strong></span><span class="p">FluxTech is raising up to €500k to join committed capital.</span><span class="p">This is a leverage round. Every euro of equity activates a cascade of non-dilutive grants, scaling total deployment from ~€400k to ~€1M depending on round size.</span></p>
+            <p id="text02" class="text-component instance-2"><span class="p"><strong>Strategic Investment Round.</strong></span><span class="p">FluxTech is raising up to €500k to join committed capital.</span><span class="p">This is a leverage round. Every euro of equity activates a cascade of non-dilutive grants, scaling total deployment from ~€460k to ~€1.2M depending on round size.</span></p>
             <p id="text39" class="text-component instance-39"><span class="p"><strong>The Funding Cascade.</strong></span><span class="p">This capital unlocks two parallel federal workstreams that transition FluxTech from feasibility to industrial readiness:</span></p>
-            <p id="text06" class="text-component instance-6" style="display:none"><span class="p"><mark>GründungsBONUS Plus (Berlin)</mark>: Triggers up to €50k in matched grant funding directly from this private raise.</span><span class="p"><mark>Two ZIM Feasibility Studies (Federal)</mark>: Provides up to €140k in R&amp;D funding to validate our two primary technical risks.</span><span class="p"><mark>ZIM R&amp;D Kooperationsprojekt (Federal)</mark>: Scales with co-funding capacity. Up to €252k for FluxTech plus up to €280k for a research partner.</span></p>
-            <p id="text34" class="text-component instance-34" style="display:none">Total Strategic Deployment: From ~€400k to ~€1M, depending on round size.</p>
+            <p id="text06" class="text-component instance-6" style="display:none"><span class="p"><mark>GründungsBONUS Plus (Berlin)</mark>: Triggers up to €50k in matched grant funding directly from this private raise.</span><span class="p"><mark>Two ZIM Feasibility Studies (Federal)</mark>: Provides up to €175k in R&amp;D funding to validate our two primary technical risks.</span><span class="p"><mark>ZIM R&amp;D Kooperationsprojekt (Federal)</mark>: Scales with co-funding capacity. Up to €550k total for FluxTech across two R&amp;D projects plus up to €560k total for research partners.</span></p>
+            <p id="text34" class="text-component instance-34" style="display:none">Total Strategic Deployment: From ~€460k to ~€1.2M, depending on round size.</p>
 
             <!-- Grant Leverage Calculator Widget -->
             <style>
@@ -3522,15 +3525,15 @@
               /* ---- Grant cascade formulas ---- */
               var COMMITTED = 55;
               var BONUS = 50;
-              var FEAS_GRANT = 140;
-              var FEAS_COFUND = 60;
+              var FEAS_GRANT = 175;
+              var FEAS_COFUND = 75;
               var OPERATING_RESERVE = 80;
               var BUFFER = 20;
 
               function calc(newCheckK) {
                 var totalDilutive = COMMITTED + newCheckK;
                 var coFundAvail = Math.max(0, totalDilutive - FEAS_COFUND - OPERATING_RESERVE - BUFFER);
-                var zimRD = Math.min(coFundAvail * (45 / 55), 252);
+                var zimRD = Math.min(coFundAvail, 550);
                 var totalNonDilutive = BONUS + FEAS_GRANT + zimRD;
                 var totalDeployment = totalDilutive + totalNonDilutive;
                 var leverage = totalDeployment / totalDilutive;

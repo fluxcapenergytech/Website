@@ -197,15 +197,15 @@
               /* ---- Grant cascade formulas ---- */
               var COMMITTED = 55;
               var BONUS = 50;
-              var FEAS_GRANT = 140;
-              var FEAS_COFUND = 60;
+              var FEAS_GRANT = 175;
+              var FEAS_COFUND = 75;
               var OPERATING_RESERVE = 80;
               var BUFFER = 20;
 
               function calc(newCheckK) {
                 var totalDilutive = COMMITTED + newCheckK;
                 var coFundAvail = Math.max(0, totalDilutive - FEAS_COFUND - OPERATING_RESERVE - BUFFER);
-                var zimRD = Math.min(coFundAvail * (45 / 55), 252);
+                var zimRD = Math.min(coFundAvail, 550);
                 var totalNonDilutive = BONUS + FEAS_GRANT + zimRD;
                 var totalDeployment = totalDilutive + totalNonDilutive;
                 var leverage = totalDeployment / totalDilutive;
