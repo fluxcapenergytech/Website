@@ -17,6 +17,18 @@
       "exit_code": 0,
       "commit": "a549baa76a89a6b40ebc0abe2bafa5353186a127",
       "timestamp": "2026-03-30T15:50:31.298518+00:00"
+    },
+    "01-update-grant-figures": {
+      "status": "completed",
+      "exit_code": 0,
+      "commit": "543797c928cc183e02e3949ebacf7e157c37df0e",
+      "timestamp": "2026-04-10T12:20:18.711061+00:00"
+    },
+    "02-add-fel-logo": {
+      "status": "completed",
+      "exit_code": 0,
+      "commit": "cc17a3b49811ae41c4df0b34c479120a714e6809",
+      "timestamp": "2026-04-10T13:09:19.619918+00:00"
     }
   }
 }
