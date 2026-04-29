@@ -79,9 +79,9 @@ text36: |
   **Seamless Integration.**
 
 text29: |
-  ==Zero Footprint.== A single unit fits a standard server rack form factor.
+  ==Operational Cooling System.== FluxTech is the site's cooling pathway in normal operation.
 
-  ==Parallel Safety.== We know that uptime for data centres is non-negotiable. So our system is additive. If an engine stops, the cooling loop remains unaffected. That means we can turn a thermal liability into an asset without ever touching the "engine room's" primary mission: keeping the servers running.
+  ==Backup-Redundant.== Existing cooling stays in place as backup. On fault, the engine decouples automatically and uptime is unaffected.
 
   ==Grid Ready.== We turn a thermal liability into a measurable reduction in grid dependency.
 
@@ -98,12 +98,14 @@ text-bm-intro: |
 
   We install, own, and operate the hardware. Customers pay for every kWh generated from their waste heat. All performance risk sits with FluxTech. If the engine produces nothing, the customer pays nothing.
 
+  The engine modulates between electricity recovery and heat delivery, capturing whichever revenue stream is paying more.
+
   This model aligns incentives across all three stakeholders: every efficiency improvement flows directly into revenue, with no intermediary step.
 
 text-bm-customer: |
   **For the Customer.**
 
-  No capital outlay. No operational burden. Revenue from infrastructure they already own. The system is purely additive to existing operations — if the engine stops, the cooling loop is unaffected and the customer owes nothing.
+  No capital outlay. No operational burden. Revenue from infrastructure they already own. FluxTech operates as the cooling pathway. If the engine stops, uptime is unaffected and the customer owes nothing.
 
 text-bm-fluxtech: |
   **For FluxTech.**
@@ -135,7 +137,7 @@ text-bm-next: "Find out more about how it works [here](#physicsengineering)."
 
 text22: "The Physics & Engineering."
 
-text17: "FluxTech’s system is a closed-loop thermoacoustic engine designed to integrate directly with existing data centre infrastructure. We utilize a four-section toroidal geometry of steel piping that connects to a data center’s cooling loop without requiring structural modifications."
+text17: "FluxTech's system is a closed-loop thermoacoustic engine designed to integrate directly with existing data centre infrastructure. We utilize a four-section toroidal geometry of steel piping that connects to a data center's cooling loop."
 
 text18: |
   **Thermal Capture.**<br /> Low-grade waste heat (30–60°C) is drawn from the server cooling circuit through high-efficiency printed circuit heat exchangers. This thermal energy is transferred to our working fluid: supercritical CO₂ (sCO₂).
@@ -150,7 +152,7 @@ text21: |
   **AI Optimization.**<br /> Operating near the critical point is inherently nonlinear and unstable. Our proprietary AI control system monitors operational data in real-time, adjusting valve timing and flow rates every second to keep the system in its highest efficiency band.
 
 text28: |
-  **Seamless Integration.**<br /> The system is additive and deployed in parallel. If an engine cycle is interrupted, it automatically decouples, ensuring data center uptime remains unaffected while the remaining thermal energy is passed through for secondary reuse.
+  **Seamless Integration.**<br /> FluxTech is the cooling pathway in normal operation. The existing cooling stack stays in place as backup; on fault, the engine decouples automatically and uptime is unaffected. Residual heat after electricity extraction is passed through for secondary reuse.
 
 text-heatmod: |
   **Heat Modulation.**<br /> Our core differentiating mechanism. Controlled, phase-locked thermal exchange synchronises heat input with the engine’s acoustic cycle, maximising energy transfer at each oscillation. This architecture has no published precedent and is the subject of our first ZIM feasibility study.
@@ -173,7 +175,7 @@ text27: |
   We are seeing immediate market pull for three specific reasons.
 
 text12: |
-  **Economic Compulsion.**<br /> High energy prices, particularly in Europe, make efficiency economically valuable independent of regulation. In our initial addressable segment alone, every percentage point of engine efficiency adds approximately €4M in annual revenue at scale.
+  **Economic Compulsion.**<br /> High energy prices, particularly in Europe, make efficiency economically valuable independent of regulation. In our initial addressable segment alone, every percentage point of engine efficiency adds approximately €4M in annual revenue at scale. In grid-constrained markets like Frankfurt and London, recovered MW unlock compute capacity worth far more than retail electricity.
 
 text24: |
   **Commercial Validation.**<br /> We have already secured three signed LOIs with deployment partners Deep Green, Leafcloud, and Heata, whose deployment pipelines represent up to 2.6 TWh of recoverable low-temperature waste heat, anchored by Deep Green's publicly stated 300 MW buildout across the UK and North America.
