@@ -40,7 +40,7 @@ text07: |
 
   The constraint is not just total energy — it is the grid’s ability to deliver it. New data centres face multi-year waits for grid connections. Operators are hitting peak demand ceilings that limit how many racks they can fill. Every kilowatt-hour generated on-site is a kilowatt-hour not drawn from the grid — reducing dependency, lowering peak demand charges, and unlocking rack density that grid constraints currently block.
 
-  Meanwhile, roughly 40% of that consumed power goes to cooling, which vents heat as waste. All the while, the EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, and Germany’s Energy Efficiency Act requires new data centres to reuse waste heat from July 2026. Regulation is compounding economic pressure that already exists.
+  Meanwhile, 10-30% of that consumed power goes to cooling, which vents heat as waste. All the while, the EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, and Germany’s Energy Efficiency Act requires new data centres to reuse waste heat from July 2026. Regulation is compounding economic pressure that already exists.
 
   The heat is there. The need for power is desperate. No viable technology bridges the two.
 text09: |
@@ -49,9 +49,9 @@ text09: |
 text30: |
   **Physics created limitations.**
 
-  So why aren't people converting waste heat into electricity already? The barrier to recovering waste heat as an energy source has always been the "Thermodynamic Dead Zone." At 30–60°C, data center heat is too cool for traditional turbines (ORC) while standard thermoelectric devices often operate at less than 1% efficiency. This physics constraint makes the conversion to electricity economically unviable for the legacy market.
+  So why aren't people converting waste heat into electricity already? The barrier to recovering waste heat as an energy source has always been the "Thermodynamic Dead Zone." At 40–65°C rack output, data center heat is too cool for traditional turbines (ORC) while standard thermoelectric devices often operate at less than 1% efficiency. This physics constraint makes the conversion to electricity economically unviable for the legacy market.
 
-  FluxTech is solving this. By utilizing supercritical CO₂ (sCO₂) as a working fluid, we gain the thermodynamic leverage required to operate at 30–60°C with high efficiency. Combined with our proprietary AI control systems, we can close the loop by capturing the surplus heat and converting it into electricity.
+  FluxTech is solving this. By utilizing supercritical CO₂ (sCO₂) as a working fluid, we gain the thermodynamic leverage required to operate with high efficiency in this temperature range. Combined with our proprietary AI control systems, we can close the loop by capturing the surplus heat and converting it into electricity.
 
 text04: "Find out more about our solution [here](#solution)."
 
@@ -62,7 +62,7 @@ text04: "Find out more about our solution [here](#solution)."
 text11: "The Solution."
 
 text36: |
-  FluxTech bridges the "Thermodynamic Dead Zone" by converting low-grade server heat into high-value electricity that can help power the data centre in a closed, sustainable loop. While legacy systems require temperatures above 80°C to function, our technology is intended to operate with high efficiency in the 30–60°C range common to modern data centres.
+  FluxTech bridges the "Thermodynamic Dead Zone" by converting low-grade server heat into high-value electricity that can help power the data centre in a closed, sustainable loop. While legacy systems require temperatures above 80°C to function, our technology is intended to operate with high efficiency in the 40–65°C range common to modern data centres.
 
   **The sCO₂ Advantage.**
 
@@ -120,7 +120,7 @@ text-bm-investor: |
 text-bm-pricing: |
   **Pricing Structure.**
 
-  Two components: a fixed base rate agreed at signing, and a floating component tied to the local electricity market price. The fixed component provides the revenue predictability that project finance requires. The floating component maintains incentive alignment: neither party benefits from gaming the rate.
+  Two components: a fixed base rate covering cooling provision, agreed at signing, and a floating component tied to the market value of recovered electricity and heat passed through for reuse. The fixed component provides the revenue predictability that project finance requires. The floating component aligns incentives on the variable streams: transparent benchmarks against local market prices mean neither party can game the rate.
 
 text-bm-contracts: |
   ==Three-year initial agreements== with renegotiation at renewal. Early-phase contracts prioritise adoption speed; as the technology matures, terms shift toward longer-duration agreements suited to project finance.
@@ -137,22 +137,22 @@ text-bm-next: "Find out more about how it works [here](#physicsengineering)."
 
 text22: "The Physics & Engineering."
 
-text17: "FluxTech's system is a closed-loop thermoacoustic engine designed to integrate directly with existing data centre infrastructure. We utilize a four-section toroidal geometry of steel piping that connects to a data center's cooling loop."
+text17: "FluxTech's system is a closed-loop thermoacoustic engine. It connects to the data centre's cooling fluid on one side and produces electricity on the other. The sections below trace the conversion end to end."
 
 text18: |
-  **Thermal Capture.**<br /> Low-grade waste heat (30–60°C) is drawn from the server cooling circuit through high-efficiency printed circuit heat exchangers. This thermal energy is transferred to our working fluid: supercritical CO₂ (sCO₂).
+  **Thermal Capture.**<br /> Low-grade waste heat (40–65°C) is drawn from the server cooling circuit through high-efficiency printed circuit heat exchangers. This thermal energy is transferred to our working fluid: supercritical CO₂ (sCO₂).
 
 text19: |
   **Acoustic Amplification.**<br /> Near its critical point, sCO₂ becomes hyper-sensitive to temperature changes. As the fluid absorbs heat, it expands and contracts, creating self-sustaining acoustic pressure waves within a resonant cavity. By using sCO₂, we gain the thermodynamic leverage required to operate in the "Dead Zone" where traditional turbines fail.
 
 text20: |
-  **Solid-State Conversion.**<br /> These high-energy acoustic waves drive a linear alternator to generate electricity. Because the conversion is driven by sound rather than rotation, the engine contains no moving parts—no turbines, no pistons, and no bearings. Reliability is structural.
+  **Energy conversion.**<br /> These high-energy acoustic waves drive a linear alternator to generate electricity. Because the conversion is driven by sound rather than rotation, the engine contains no moving parts—no turbines, no pistons, and no bearings. Reliability is structural.
 
 text21: |
   **AI Optimization.**<br /> Operating near the critical point is inherently nonlinear and unstable. Our proprietary AI control system monitors operational data in real-time, adjusting valve timing and flow rates every second to keep the system in its highest efficiency band.
 
 text28: |
-  **Seamless Integration.**<br /> FluxTech is the cooling pathway in normal operation. The existing cooling stack stays in place as backup; on fault, the engine decouples automatically and uptime is unaffected. Residual heat after electricity extraction is passed through for secondary reuse.
+  **Seamless Integration.**<br /> FluxTech is the cooling pathway in normal operation. The existing cooling stack stays in place as backup; on fault, the engine decouples automatically and uptime is unaffected. Residual heat after electricity extraction is passed through at the appropriate temperature for secondary reuse.
 
 text-heatmod: |
   **Heat Modulation.**<br /> Our core differentiating mechanism. Controlled, phase-locked thermal exchange synchronises heat input with the engine’s acoustic cycle, maximising energy transfer at each oscillation. This architecture has no published precedent and is the subject of our first ZIM feasibility study.
@@ -175,7 +175,7 @@ text27: |
   We are seeing immediate market pull for three specific reasons.
 
 text12: |
-  **Economic Compulsion.**<br /> High energy prices, particularly in Europe, make efficiency economically valuable independent of regulation. In our initial addressable segment alone, every percentage point of engine efficiency adds approximately €4M in annual revenue at scale. In grid-constrained markets like Frankfurt and London, recovered MW unlock compute capacity worth far more than retail electricity.
+  **Economic Compulsion.**<br /> High energy prices, particularly in Europe, make efficiency economically valuable independent of regulation. In our initial addressable segment alone, every percentage point of engine efficiency adds approximately €4M in annual revenue at scale. In grid-constrained markets like Frankfurt and London, every recovered MW unlocks compute capacity worth far more than retail electricity.
 
 text24: |
   **Commercial Validation.**<br /> We have already secured three signed LOIs with deployment partners Deep Green, Leafcloud, and Heata, whose deployment pipelines represent up to 2.6 TWh of recoverable low-temperature waste heat, anchored by Deep Green's publicly stated 300 MW buildout across the UK and North America.
@@ -199,7 +199,7 @@ text08: |
 
   Before FluxTech, John spent five years as a professional musician, an experience that sharpened pattern recognition, rapid iteration, and comfort with ambiguity. The engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion — a problem the industry had written off.
 
-  *“I’m obsessed with this problem. Real ecological impact, a clear economic case, and the kind of deep interdisciplinary physics that makes it genuinely hard to solve. That’s the combination I’ve been looking for my whole career.”*
+  *“This whole field of problems keeps me awake at night in the best way possible; it’s truly fascinating. The ecological impact feels tangible, the economic side gains strength every time I check the news, and I love where it sits with compelling interdisciplinary depth. It’s the perfect mix to drive the kind of obsession necessary for a successful startup.”*
 text14: |
   **Florian Schmack | Co-Founder & Materials Lead.**
 
