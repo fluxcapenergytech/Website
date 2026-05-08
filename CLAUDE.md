@@ -94,7 +94,7 @@ python build.py --check      # Dry run: validate YAML keys match template placeh
 - Fonts: Poppins (headings, gradient text) and Source Code Pro (body).
 - Brand palette: teal-to-green gradient (`#007FAD` → `#009A62`), body text `#1A1D21`, highlight background `#CBF5E6`.
 - Section headings use Poppins with CSS gradient fill. Body text uses Source Code Pro.
-- All images live in `assets/images/` with descriptive kebab-case names (e.g., `logo-fluxtech.jpg`, `headshot-john.jpg`, `chart-iea-datacenter-energy.jpg`). No auto-generated numbered filenames.
+- All images live in `assets/images/` with descriptive kebab-case names (e.g., `logo-fluxtech.png`, `headshot-john.jpg`, `chart-iea-datacenter-energy.png`). No auto-generated numbered filenames.
 - The YouTube embed URL lives in `sections/home.html` (it's structural, not copy).
 
 ## What to Preserve
