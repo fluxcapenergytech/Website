@@ -432,12 +432,37 @@
         display: block;
       }
       .section {
+        position: relative;
+        /* Own stacking context so the paper-texture ::before (z-index:-1) stays
+           scoped to this section — above its background, below its content —
+           instead of escaping to the root layer and hiding under opaque/tinted
+           section backgrounds (which made the texture appear only on some
+           sections). Keeps wrinkle intensity uniform across every section. */
+        isolation: isolate;
         scroll-margin-top: calc(var(--header-h) + 1rem);
         padding: clamp(3.25rem, 7vw, 5.5rem) 0;
         border-bottom: 1px solid var(--c-border);
       }
       .section:nth-of-type(even) {
         background: var(--c-tint);
+      }
+      /* Paper texture: an SVG height-field (fractal noise) lit by a soft distant
+         light gives a crease relief; a colour-matrix then maps the lit flats to
+         transparent and the crease shadows to a translucent ink (--c-ink), so the
+         texture carries ONLY the wrinkle shadows as alpha. Composited normally
+         (no blend mode) it lays the SAME shadow onto any section — white or tint —
+         so wrinkle intensity is independent of the background colour. Finer, denser
+         folds keep every section evenly textured (no occasional large creases).
+         Sits behind the section content (z-index:-1). Static, no extra request. */
+      .section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.030' numOctaves='4' seed='14' stitchTiles='stitch' result='n'/><feDiffuseLighting in='n' surfaceScale='2.8' diffuseConstant='1' lighting-color='%23ffffff' result='l'><feDistantLight azimuth='225' elevation='62'/></feDiffuseLighting><feColorMatrix in='l' type='matrix' values='0 0 0 0 0.102 0 0 0 0 0.114 0 0 0 0 0.129 -0.33 -0.34 -0.33 0 1' result='a'/><feComponentTransfer in='a'><feFuncA type='linear' slope='1.7' intercept='-0.10'/></feComponentTransfer></filter><rect width='700' height='700' filter='url(%23p)'/></svg>");
+        background-size: 700px 700px;
+        opacity: 0.1;
       }
       .section__inner {
         max-width: var(--maxw);
@@ -1077,7 +1102,7 @@
 
     <header class="site-header">
       <div class="site-header__bar">
-        <a class="brand" href="#home" aria-label="FluxTech — home">
+        <a class="brand" href="#home" aria-label="FluxTech, home">
           <img class="brand__icon" src="assets/images/logo-fluxtech-icon.svg" alt="" width="363" height="357" />
           <img class="brand__word" src="assets/images/logo-fluxtech-wordmark.svg" alt="" width="606" height="103" />
         </a>
@@ -1159,12 +1184,12 @@
             <h2 id="text16" class="h-section reveal">The Problem.</h2>
           </div>
           <div class="section__body">
-            <div id="text07" class="prose lede reveal"><span class="p">Data centres are the engine rooms of our time, yet they are running into a hard wall: power. Jensen Huang identifies it as the single biggest bottleneck for scaling AI. Data centres consumed 415 TWh of electricity in 2024 — projected to reach 945 TWh by 2030 as AI workloads explode. That is nearly double Germany’s total annual electricity consumption.</span><span class="p">The constraint is not just total energy — it is the grid’s ability to deliver it. New data centres face multi-year waits for grid connections. Operators are hitting peak demand ceilings that limit how many racks they can fill. Every kilowatt-hour generated on-site is a kilowatt-hour not drawn from the grid — reducing dependency, lowering peak demand charges, and unlocking rack density that grid constraints currently block.</span><span class="p">Meanwhile, 10-30% of that consumed power goes to cooling, which vents heat as waste. All the while, the EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, and Germany’s Energy Efficiency Act requires new data centres to reuse waste heat from July 2026. Regulation is compounding economic pressure that already exists.</span><span class="p">The heat is there. The need for power is desperate. No viable technology bridges the two.</span></div>
+            <div id="text07" class="prose lede reveal"><span class="p">Data centres are the engine rooms of our time, yet they are running into a hard wall: power. Jensen Huang identifies it as the single biggest bottleneck for scaling AI. Data centres consumed 415 TWh of electricity in 2024, projected to reach 945 TWh by 2030 as AI workloads explode. That is nearly double Germany’s total annual electricity consumption.</span><span class="p">The constraint is not just total energy: it is the grid’s ability to deliver it. New data centres face multi-year waits for grid connections. Operators are hitting peak demand ceilings that limit how many racks they can fill. Every kilowatt-hour generated on-site is a kilowatt-hour not drawn from the grid, reducing dependency, lowering peak demand charges, and unlocking rack density that grid constraints currently block.</span><span class="p">Meanwhile, 10-30% of that consumed power goes to cooling, which vents heat as waste. All the while, the EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, and Germany’s Energy Efficiency Act requires new data centres to reuse waste heat from July 2026. Regulation is compounding economic pressure that already exists.</span><span class="p">The heat is there. The need for power is desperate. No viable technology bridges the two.</span></div>
 
             <figure class="figure figure--chart reveal">
               <img
                 src="assets/images/chart-iea-datacenter-energy.png?v=e1d5cfd8"
-                alt="Data Centre Electricity Consumption, 2020–2030 (TWh) — IEA"
+                alt="Data Centre Electricity Consumption, 2020–2030 (TWh), IEA"
                 width="1200"
                 height="1000"
               />
@@ -1196,8 +1221,8 @@
 
             <div class="card-grid reveal">
               <div id="text-bm-customer" class="card"><span class="p"><strong>For the Customer.</strong></span><span class="p">No capital outlay. No operational burden. Revenue from infrastructure they already own. FluxTech operates as the cooling pathway. If the engine stops, uptime is unaffected and the customer owes nothing.</span></div>
-              <div id="text-bm-fluxtech" class="card"><span class="p"><strong>For FluxTech.</strong></span><span class="p">Hardware ownership captures the full value of every efficiency gain. Revenue scales directly with technology performance. Fleet ownership enables modular upgrades in the field and circular lifecycle management — replaced units are refurbished and redeployed.</span></div>
-              <div id="text-bm-investor" class="card"><span class="p"><strong>For the Investor.</strong></span><span class="p">Recurring revenue tied to a cost the customer already pays. Performance compounds into revenue without new customer acquisition. Fleet growth enables project finance — borrowing against contracted revenue to fund expansion — reducing equity dilution in later phases.</span></div>
+              <div id="text-bm-fluxtech" class="card"><span class="p"><strong>For FluxTech.</strong></span><span class="p">Hardware ownership captures the full value of every efficiency gain. Revenue scales directly with technology performance. Fleet ownership enables modular upgrades in the field and circular lifecycle management: replaced units are refurbished and redeployed.</span></div>
+              <div id="text-bm-investor" class="card"><span class="p"><strong>For the Investor.</strong></span><span class="p">Recurring revenue tied to a cost the customer already pays. Performance compounds into revenue without new customer acquisition. Fleet growth enables project finance (borrowing against contracted revenue to fund expansion), reducing equity dilution in later phases.</span></div>
             </div>
 
             <div id="text-bm-pricing" class="prose reveal"><span class="p"><strong>Pricing Structure.</strong></span><span class="p">Two components: a fixed base rate covering cooling provision, agreed at signing, and a floating component tied to the market value of recovered electricity and heat passed through for reuse. The fixed component provides the revenue predictability that project finance requires. The floating component aligns incentives on the variable streams: transparent benchmarks against local market prices mean neither party can game the rate.</span></div>
@@ -1238,7 +1263,7 @@
                 <img class="step__icon" src="assets/images/icon-solid-state-conversion.jpg?v=e1d5cfd8" alt="" width="200" height="200" />
                 <span class="step__line"></span>
               </div>
-              <div class="step__body"><p id="text20" class="prose"><strong>Energy conversion.</strong><br /> These high-energy acoustic waves drive a linear alternator to generate electricity. Because the conversion is driven by sound rather than rotation, the engine contains no moving parts—no turbines, no pistons, and no bearings. Reliability is structural.</p></div>
+              <div class="step__body"><p id="text20" class="prose"><strong>Energy conversion.</strong><br /> These high-energy acoustic waves drive a linear alternator to generate electricity. Because the conversion is driven by sound rather than rotation, the engine contains no moving parts: no turbines, no pistons, and no bearings. Reliability is structural.</p></div>
             </li>
 
             <li class="step reveal">
@@ -1290,7 +1315,7 @@
               </div>
               <div class="card">
                 <img class="card__icon" src="assets/images/icon-regulation-mandates.jpg?v=e1d5cfd8" alt="" width="205" height="205" />
-                <p id="text25"><strong>Binding Sustainability Mandates.</strong><br /> The EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, with minimum standards planned for 2026. Germany’s Energy Efficiency Act requires new data centres to reuse waste heat — creating direct regulatory demand for energy recovery infrastructure.</p>
+                <p id="text25"><strong>Binding Sustainability Mandates.</strong><br /> The EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, with minimum standards planned for 2026. Germany’s Energy Efficiency Act requires new data centres to reuse waste heat, creating direct regulatory demand for energy recovery infrastructure.</p>
               </div>
             </div>
           </div>
@@ -1311,7 +1336,7 @@
                   width="577"
                   height="577"
                 />
-                <div id="text08" class="member__bio"><span class="p"><strong>John Therrien | Co-Founder &amp; Engine Architect.</strong></span><span class="p"><mark>Where thermodynamics meets control theory.</mark></span><span class="p">John holds a double major in Physics and Mechanical Engineering from UC Santa Barbara — a five-year program spanning two colleges. That dual foundation converges directly in the nonlinear physics at the core of FluxTech’s engine architecture.</span><span class="p">Before FluxTech, John spent five years as a professional musician, an experience that sharpened pattern recognition, rapid iteration, and comfort with ambiguity. The engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion — a problem the industry had written off.</span><span class="p"><em>“This whole field of problems keeps me awake at night in the best way possible; it’s truly fascinating. The ecological impact feels tangible, the economic side gains strength every time I check the news, and I love where it sits with compelling interdisciplinary depth. It’s a perfect engine to drive the kind of obsession necessary for a successful startup.”</em></span></div>
+                <div id="text08" class="member__bio"><span class="p"><strong>John Therrien | Co-Founder &amp; Engine Architect.</strong></span><span class="p"><mark>Where thermodynamics meets control theory.</mark></span><span class="p">John holds a double major in Physics and Mechanical Engineering from UC Santa Barbara, a five-year program spanning two colleges. That dual foundation converges directly in the nonlinear physics at the core of FluxTech’s engine architecture.</span><span class="p">Before FluxTech, John spent five years as a professional musician, touring and working in the studio. The experience sharpened project management, rapid iteration, and comfort with ambiguity. FluxTech’s thermoacoustic engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion; self-starting in a technical arena the industry had written off.</span><span class="p"><em>“This whole field of problems keeps me awake at night in the best way possible; it’s truly fascinating. The ecological impact feels tangible, the economic side gains strength every time I check the news, and I love where it sits with compelling interdisciplinary depth. It’s a perfect engine to drive the kind of obsession necessary for a successful startup.”</em></span></div>
               </article>
               <article class="member reveal">
                 <img
@@ -1321,7 +1346,7 @@
                   width="577"
                   height="577"
                 />
-                <div id="text14" class="member__bio"><span class="p"><strong>Florian Schmack | Co-Founder &amp; Materials Lead.</strong></span><span class="p"><mark>Materials define limits. Engineering overcomes them.</mark></span><span class="p">Flo holds a master’s degree in materials science from TU Berlin, specialising in light metals and high-purity synthesis. At PSC Technologies, he pioneered a method for identifying silicon impurities below 0.1% — a breakthrough that eliminated false positives in battery testing and set a new standard for material analysis.</span><span class="p">In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specialising in Machine Learning and Cloud Computing. This intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ systems and the construction of the TRL 4 research platform.</span><span class="p"><em>“We are not just managing heat, we are harvesting a previously invisible resource. Let’s turn the waste of today into the power of tomorrow.”</em></span></div>
+                <div id="text14" class="member__bio"><span class="p"><strong>Florian Schmack | Co-Founder &amp; Materials Lead.</strong></span><span class="p"><mark>Materials define limits. Engineering overcomes them.</mark></span><span class="p">Flo holds a master’s degree in materials science from TU Berlin, specialising in light metals and high-purity synthesis. At PSC Technologies, he pioneered a method for identifying silicon impurities below 0.1%, a breakthrough that eliminated false positives in battery testing and set a new standard for material analysis.</span><span class="p">In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specialising in Machine Learning and Cloud Computing. This intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ systems and the construction of the TRL 4 research platform.</span><span class="p"><em>“We are not just managing heat, we are harvesting a previously invisible resource. Let’s turn the waste of today into the power of tomorrow.”</em></span></div>
               </article>
             </div>
           </div>
@@ -1518,7 +1543,7 @@
             </div>
 
             <div class="gw-footer">
-              Next non-dilutive layer: <strong>SPRIND</strong> (up to €1M) · <strong>EIC Pathfinder</strong> (up to €3M) — no additional equity required
+              Next non-dilutive layer: <strong>SPRIND</strong> (up to €1M) · <strong>EIC Pathfinder</strong> (up to €3M), no additional equity required
             </div>
           </div>
 
@@ -1690,7 +1715,7 @@
           <span class="label">LinkedIn</span>
         </a>
       </div>
-      <p>FluxTech — Converting AI data centre waste heat into electricity.</p>
+      <p>FluxTech: Converting AI data centre waste heat into electricity.</p>
       <p class="muted">
         Strategic Communications, Brand, and Initial Website by <a href="https://shamsara.carrd.co/">Sham Sara</a>.
       </p>

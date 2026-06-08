@@ -36,9 +36,9 @@ text37: "MotionLab Berlin hardtech accelerator graduates. Based at Future Energy
 text16: "The Problem."
 
 text07: |
-  Data centres are the engine rooms of our time, yet they are running into a hard wall: power. Jensen Huang identifies it as the single biggest bottleneck for scaling AI. Data centres consumed 415 TWh of electricity in 2024 — projected to reach 945 TWh by 2030 as AI workloads explode. That is nearly double Germany’s total annual electricity consumption.
+  Data centres are the engine rooms of our time, yet they are running into a hard wall: power. Jensen Huang identifies it as the single biggest bottleneck for scaling AI. Data centres consumed 415 TWh of electricity in 2024, projected to reach 945 TWh by 2030 as AI workloads explode. That is nearly double Germany’s total annual electricity consumption.
 
-  The constraint is not just total energy — it is the grid’s ability to deliver it. New data centres face multi-year waits for grid connections. Operators are hitting peak demand ceilings that limit how many racks they can fill. Every kilowatt-hour generated on-site is a kilowatt-hour not drawn from the grid — reducing dependency, lowering peak demand charges, and unlocking rack density that grid constraints currently block.
+  The constraint is not just total energy: it is the grid’s ability to deliver it. New data centres face multi-year waits for grid connections. Operators are hitting peak demand ceilings that limit how many racks they can fill. Every kilowatt-hour generated on-site is a kilowatt-hour not drawn from the grid, reducing dependency, lowering peak demand charges, and unlocking rack density that grid constraints currently block.
 
   Meanwhile, 10-30% of that consumed power goes to cooling, which vents heat as waste. All the while, the EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, and Germany’s Energy Efficiency Act requires new data centres to reuse waste heat from July 2026. Regulation is compounding economic pressure that already exists.
 
@@ -106,12 +106,12 @@ text-bm-customer: |
 text-bm-fluxtech: |
   **For FluxTech.**
 
-  Hardware ownership captures the full value of every efficiency gain. Revenue scales directly with technology performance. Fleet ownership enables modular upgrades in the field and circular lifecycle management — replaced units are refurbished and redeployed.
+  Hardware ownership captures the full value of every efficiency gain. Revenue scales directly with technology performance. Fleet ownership enables modular upgrades in the field and circular lifecycle management: replaced units are refurbished and redeployed.
 
 text-bm-investor: |
   **For the Investor.**
 
-  Recurring revenue tied to a cost the customer already pays. Performance compounds into revenue without new customer acquisition. Fleet growth enables project finance — borrowing against contracted revenue to fund expansion — reducing equity dilution in later phases.
+  Recurring revenue tied to a cost the customer already pays. Performance compounds into revenue without new customer acquisition. Fleet growth enables project finance (borrowing against contracted revenue to fund expansion), reducing equity dilution in later phases.
 
 text-bm-pricing: |
   **Pricing Structure.**
@@ -140,7 +140,7 @@ text19: |
   **Acoustic Amplification.**<br /> Near its critical point, sCO₂ becomes hyper-sensitive to temperature changes. As the fluid absorbs heat, it expands and contracts, creating self-sustaining acoustic pressure waves within a resonant cavity. By using sCO₂, we gain the thermodynamic leverage required to operate in the "Dead Zone" where traditional turbines fail.
 
 text20: |
-  **Energy conversion.**<br /> These high-energy acoustic waves drive a linear alternator to generate electricity. Because the conversion is driven by sound rather than rotation, the engine contains no moving parts—no turbines, no pistons, and no bearings. Reliability is structural.
+  **Energy conversion.**<br /> These high-energy acoustic waves drive a linear alternator to generate electricity. Because the conversion is driven by sound rather than rotation, the engine contains no moving parts: no turbines, no pistons, and no bearings. Reliability is structural.
 
 text21: |
   **AI Optimization.**<br /> Operating near the critical point is inherently nonlinear and unstable. Our proprietary AI control system monitors operational data in real-time, adjusting valve timing and flow rates every second to keep the system in its highest efficiency band.
@@ -172,7 +172,7 @@ text12: |
 text24: |
   **Commercial Validation.**<br /> We have already secured three signed LOIs with deployment partners Deep Green, Leafcloud, and Heata, whose deployment pipelines represent up to 2.6 TWh of recoverable low-temperature waste heat, anchored by Deep Green's publicly stated 300 MW buildout across the UK and North America.
 text25: |
-  **Binding Sustainability Mandates.**<br /> The EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, with minimum standards planned for 2026. Germany’s Energy Efficiency Act requires new data centres to reuse waste heat — creating direct regulatory demand for energy recovery infrastructure.
+  **Binding Sustainability Mandates.**<br /> The EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, with minimum standards planned for 2026. Germany’s Energy Efficiency Act requires new data centres to reuse waste heat, creating direct regulatory demand for energy recovery infrastructure.
 
 # ---------------------------------------------------------------------------
 # Team Section
@@ -185,9 +185,9 @@ text08: |
 
   ==Where thermodynamics meets control theory.==
 
-  John holds a double major in Physics and Mechanical Engineering from UC Santa Barbara — a five-year program spanning two colleges. That dual foundation converges directly in the nonlinear physics at the core of FluxTech’s engine architecture.
+  John holds a double major in Physics and Mechanical Engineering from UC Santa Barbara, a five-year program spanning two colleges. That dual foundation converges directly in the nonlinear physics at the core of FluxTech’s engine architecture.
 
-  Before FluxTech, John spent five years as a professional musician, an experience that sharpened pattern recognition, rapid iteration, and comfort with ambiguity. The engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion — a problem the industry had written off.
+  Before FluxTech, John spent five years as a professional musician, touring and working in the studio. The experience sharpened project management, rapid iteration, and comfort with ambiguity. FluxTech’s thermoacoustic engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion; self-starting in a technical arena the industry had written off.
 
   *“This whole field of problems keeps me awake at night in the best way possible; it’s truly fascinating. The ecological impact feels tangible, the economic side gains strength every time I check the news, and I love where it sits with compelling interdisciplinary depth. It’s a perfect engine to drive the kind of obsession necessary for a successful startup.”*
 text14: |
@@ -195,7 +195,7 @@ text14: |
 
   ==Materials define limits. Engineering overcomes them.==
 
-  Flo holds a master’s degree in materials science from TU Berlin, specialising in light metals and high-purity synthesis. At PSC Technologies, he pioneered a method for identifying silicon impurities below 0.1% — a breakthrough that eliminated false positives in battery testing and set a new standard for material analysis.
+  Flo holds a master’s degree in materials science from TU Berlin, specialising in light metals and high-purity synthesis. At PSC Technologies, he pioneered a method for identifying silicon impurities below 0.1%, a breakthrough that eliminated false positives in battery testing and set a new standard for material analysis.
 
   In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specialising in Machine Learning and Cloud Computing. This intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ systems and the construction of the TRL 4 research platform.
 

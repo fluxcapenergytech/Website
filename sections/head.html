@@ -432,12 +432,37 @@
         display: block;
       }
       .section {
+        position: relative;
+        /* Own stacking context so the paper-texture ::before (z-index:-1) stays
+           scoped to this section — above its background, below its content —
+           instead of escaping to the root layer and hiding under opaque/tinted
+           section backgrounds (which made the texture appear only on some
+           sections). Keeps wrinkle intensity uniform across every section. */
+        isolation: isolate;
         scroll-margin-top: calc(var(--header-h) + 1rem);
         padding: clamp(3.25rem, 7vw, 5.5rem) 0;
         border-bottom: 1px solid var(--c-border);
       }
       .section:nth-of-type(even) {
         background: var(--c-tint);
+      }
+      /* Paper texture: an SVG height-field (fractal noise) lit by a soft distant
+         light gives a crease relief; a colour-matrix then maps the lit flats to
+         transparent and the crease shadows to a translucent ink (--c-ink), so the
+         texture carries ONLY the wrinkle shadows as alpha. Composited normally
+         (no blend mode) it lays the SAME shadow onto any section — white or tint —
+         so wrinkle intensity is independent of the background colour. Finer, denser
+         folds keep every section evenly textured (no occasional large creases).
+         Sits behind the section content (z-index:-1). Static, no extra request. */
+      .section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        pointer-events: none;
+        background-image: url("data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' width='700' height='700'><filter id='p'><feTurbulence type='fractalNoise' baseFrequency='0.030' numOctaves='4' seed='14' stitchTiles='stitch' result='n'/><feDiffuseLighting in='n' surfaceScale='2.8' diffuseConstant='1' lighting-color='%23ffffff' result='l'><feDistantLight azimuth='225' elevation='62'/></feDiffuseLighting><feColorMatrix in='l' type='matrix' values='0 0 0 0 0.102 0 0 0 0 0.114 0 0 0 0 0.129 -0.33 -0.34 -0.33 0 1' result='a'/><feComponentTransfer in='a'><feFuncA type='linear' slope='1.7' intercept='-0.10'/></feComponentTransfer></filter><rect width='700' height='700' filter='url(%23p)'/></svg>");
+        background-size: 700px 700px;
+        opacity: 0.1;
       }
       .section__inner {
         max-width: var(--maxw);
@@ -1077,7 +1102,7 @@
 
     <header class="site-header">
       <div class="site-header__bar">
-        <a class="brand" href="#home" aria-label="FluxTech — home">
+        <a class="brand" href="#home" aria-label="FluxTech, home">
           <img class="brand__icon" src="assets/images/logo-fluxtech-icon.svg" alt="" width="363" height="357" />
           <img class="brand__word" src="assets/images/logo-fluxtech-wordmark.svg" alt="" width="606" height="103" />
         </a>
