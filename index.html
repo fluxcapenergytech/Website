@@ -661,9 +661,16 @@
         margin: 2.75rem 0 0.75rem;
       }
       .hero__partners img {
-        height: 2.4rem;
         width: auto;
         opacity: 0.92;
+      }
+      /* Optically balanced sizing: FEL has more internal whitespace than the
+         MotionLab mark, so it's set taller to read at the same visual weight. */
+      .partner--motionlab {
+        height: 3rem;
+      }
+      .partner--fel {
+        height: 4.25rem;
       }
       .hero__caption {
         text-align: center;
@@ -1129,12 +1136,14 @@
 
           <div class="hero__partners reveal">
             <img
+              class="partner--motionlab"
               src="assets/images/logo-motionlab.png?v=e1d5cfd8"
               alt="MotionLab Berlin"
               width="360"
               height="122"
             />
             <img
+              class="partner--fel"
               src="assets/images/logo-future-energy-labs.png"
               alt="Future Energy Labs"
               width="6626"
@@ -1683,7 +1692,7 @@
       </div>
       <p>FluxTech — Converting AI data centre waste heat into electricity.</p>
       <p class="muted">
-        Strategic Communications, Brand, and Website by <a href="https://shamsara.carrd.co/">Sham Sara</a>.
+        Strategic Communications, Brand, and Initial Website by <a href="https://shamsara.carrd.co/">Sham Sara</a>.
       </p>
     </footer>
 
