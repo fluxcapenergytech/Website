@@ -50,8 +50,10 @@ def load_template():
 
 def markdown_to_html(text):
     """Convert markdown-style inline formatting to HTML."""
-    # Bold: **text** → <strong>text</strong>
+    # Bold: **text** → <strong>text</strong>  (must run before italic)
     text = re.sub(r'\*\*(.+?)\*\*', r'<strong>\1</strong>', text)
+    # Italic: *text* → <em>text</em>  (single asterisks; bold already consumed)
+    text = re.sub(r'\*(.+?)\*', r'<em>\1</em>', text)
     # Highlight: ==text== → <mark>text</mark>
     text = re.sub(r'==(.+?)==', r'<mark>\1</mark>', text)
     # Links: [text](url) → <a href="url">text</a>

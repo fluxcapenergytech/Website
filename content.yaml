@@ -79,9 +79,9 @@ text36: |
   **Seamless Integration.**
 
 text29: |
-  ==Operational Cooling System.== FluxTech is the site's cooling pathway in normal operation.
+  ==Operational Cooling System.== FluxTech is the site's cooling pathway in normal operation, sized to site load.
 
-  ==Backup-Redundant.== Existing cooling stays in place as backup. On fault, the engine decouples automatically and uptime is unaffected.
+  ==Backup-Redundant.== The existing cooling stack stays in place as backup. On fault, the engine decouples automatically and uptime is unaffected.
 
   ==Grid Ready.== We turn a thermal liability into a measurable reduction in grid dependency.
 
