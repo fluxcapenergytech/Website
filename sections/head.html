@@ -17,6 +17,7 @@
     <meta property="og:url" content="https://flux-tech.de" />
     <meta property="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://flux-tech.de" />
+    <link rel="icon" href="assets/images/logo-fluxtech-icon.svg" type="image/svg+xml" />
     <link
       href="https://fonts.googleapis.com/css2?display=swap&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400"
       rel="stylesheet"
@@ -91,8 +92,9 @@
         --grad: linear-gradient(31deg, #007fad 0%, #009a62 70%);
         --font-head: "Poppins", system-ui, sans-serif;
         --font-body: "Source Code Pro", ui-monospace, monospace;
-        --maxw: 54rem;
-        --maxw-wide: 72rem;
+        --maxw: 78rem; /* content shell width (desktop) */
+        --maxw-wide: 78rem; /* header bar aligns with the shell */
+        --measure: 44rem; /* readable text column (~70ch) inside the wide shell */
         --header-h: 4rem;
         --radius: 14px;
         --shadow: 0 1px 2px rgba(16, 30, 28, 0.04), 0 8px 28px rgba(16, 30, 28, 0.06);
@@ -221,19 +223,14 @@
         text-decoration: none;
         flex: 0 0 auto;
       }
-      .brand img {
-        height: 1.85rem;
+      /* Brand lockup: official SVG icon + black SVG wordmark, sized independently. */
+      .brand__icon {
+        height: 1.95rem;
         width: auto;
       }
       .brand__word {
-        font-family: var(--font-head);
-        font-weight: 700;
-        font-size: 1.15rem;
-        letter-spacing: -0.01em;
-        background: var(--grad);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        height: 1rem;
+        width: auto;
       }
       .primary-nav {
         margin-left: auto;
@@ -384,7 +381,9 @@
         opacity: 1;
         transform: none;
       }
-      @media (max-width: 1180px) {
+      /* Show the side dots only once the viewport is wide enough to clear the
+         content shell — otherwise they'd sit on top of the right-hand content. */
+      @media (max-width: 85em) {
         .dot-nav {
           display: none;
         }
@@ -444,6 +443,32 @@
         max-width: var(--maxw);
         margin: 0 auto;
         padding: 0 1.5rem;
+      }
+      /* Editorial two-column: heading rail on the left, content on the right.
+         Mobile-first single column; the split engages on wider viewports so the
+         layout uses the width instead of stranding everything in a narrow center. */
+      @media (min-width: 64em) {
+        .section:not(.hero) .section__inner {
+          display: grid;
+          grid-template-columns: minmax(13rem, 15rem) minmax(0, 1fr);
+          column-gap: clamp(2.5rem, 5vw, 5rem);
+          align-items: start;
+        }
+        .section__head {
+          position: sticky;
+          top: calc(var(--header-h) + 1.5rem);
+        }
+        .section__head .h-section {
+          margin-bottom: 0;
+        }
+      }
+      /* Paragraphs keep a readable measure even when the body column is wide;
+         card grids, figures, the walkthrough and the widget use the full width. */
+      .section__body > .prose {
+        max-width: var(--measure);
+      }
+      .section__body > .prose.text-center {
+        margin-inline: auto;
       }
       .section:focus {
         outline: none;
@@ -523,16 +548,6 @@
         font-size: 0.82em;
       }
 
-      /* Inline thematic cross-link ("Find out more …") */
-      .crosslink {
-        margin-top: 1.5rem;
-        font-size: 0.95rem;
-        color: var(--c-muted);
-      }
-      .crosslink a {
-        color: var(--c-teal);
-      }
-
       /* Small utilities */
       .text-center {
         text-align: center;
@@ -542,47 +557,6 @@
         width: 3.75rem;
         height: auto;
         margin: 3rem auto 1.25rem;
-      }
-
-      /* "Next" sequential affordance */
-      .next-eyebrow {
-        display: block;
-        font-family: var(--font-head);
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--c-muted);
-        margin-bottom: 0.3rem;
-        margin-top: 2.5rem;
-      }
-      .next-section {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.5rem;
-        font-family: var(--font-head);
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        color: var(--c-ink);
-        border-bottom: 2px solid transparent;
-        transition: border-color 0.2s ease;
-      }
-      .next-section span {
-        background: var(--grad);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-      .next-section .next-arrow {
-        color: var(--c-green);
-        transition: transform 0.2s ease;
-      }
-      .next-section:hover {
-        border-color: var(--c-green);
-      }
-      .next-section:hover .next-arrow {
-        transform: translateX(4px);
       }
 
       /* ===================================================================
@@ -808,6 +782,7 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
         margin-top: 1.5rem;
+        max-width: 52rem; /* keep founder bios at a readable width on wide screens */
       }
       .member {
         display: grid;
@@ -876,7 +851,7 @@
       .step {
         position: relative;
         display: grid;
-        grid-template-columns: 4.25rem 1fr;
+        grid-template-columns: 4.75rem 1fr;
         gap: 1.4rem;
         padding-bottom: 2.5rem;
       }
@@ -919,14 +894,15 @@
         display: none;
       }
       .step__icon {
-        width: 2.4rem;
-        height: 2.4rem;
+        width: 3.25rem;
+        height: 3.25rem;
         border-radius: 50%;
-        border: 1px solid var(--c-border);
         background: #fff;
+        box-shadow: var(--shadow);
       }
       .step__body {
-        padding-top: 0.35rem;
+        padding-top: 0.5rem;
+        max-width: 44rem; /* keep step copy at a readable measure on wide screens */
       }
       .step__body .p strong,
       .step__body strong {
@@ -937,19 +913,9 @@
         color: var(--c-ink);
         margin-bottom: 0.35rem;
       }
-      .step__diagram {
-        margin-top: 1.1rem;
-        max-width: 22rem;
-      }
-      .step__diagram img {
-        width: 100%;
-        height: auto;
-        border-radius: 12px;
-        border: 1px solid var(--c-border);
-      }
       @media (max-width: 560px) {
         .step {
-          grid-template-columns: 3.25rem 1fr;
+          grid-template-columns: 3.75rem 1fr;
           gap: 1rem;
         }
         .step__num {
@@ -958,8 +924,8 @@
           font-size: 0.9rem;
         }
         .step__icon {
-          width: 1.9rem;
-          height: 1.9rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
 
@@ -1105,8 +1071,8 @@
     <header class="site-header">
       <div class="site-header__bar">
         <a class="brand" href="#home" aria-label="FluxTech — home">
-          <img src="assets/images/logo-fluxtech-icon.png?v=e1d5cfd8" alt="" width="1500" height="1476" />
-          <span class="brand__word">FluxTech.</span>
+          <img class="brand__icon" src="assets/images/logo-fluxtech-icon.svg" alt="" width="363" height="357" />
+          <img class="brand__word" src="assets/images/logo-fluxtech-wordmark.svg" alt="" width="606" height="103" />
         </a>
         <nav class="primary-nav" aria-label="Primary">
           <ul>

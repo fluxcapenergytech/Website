@@ -137,6 +137,18 @@ python build.py --check      # Dry run: validate YAML keys match template placeh
 - All images live in `assets/images/` with descriptive kebab-case names. Every `<img>` carries
   explicit `width`/`height` (intrinsic pixels) so reveals and late media don't cause layout
   shift (CLS).
+- **Logo** — centralized as three transparent SVGs derived from one master lockup
+  (gradient icon over wordmark):
+  - `logo-fluxtech.svg` — full stacked lockup → **hero**.
+  - `logo-fluxtech-icon.svg` — gradient icon only → **header** mark, **Ask** mark, **favicon**.
+  - `logo-fluxtech-wordmark.svg` — "FluxTech." as outlined black (`#1a1d21`) paths, Poppins
+    SemiBold, no font dependency → **header** wordmark.
+
+  The header brand is the icon + wordmark composed side by side via the `.brand` flex row (each
+  sized independently: `.brand__icon`, `.brand__word`). The wordmark is intentionally **black**,
+  not the page's teal-green gradient. All three share one coordinate space (`userSpaceOnUse`
+  gradient), so if the mark changes, re-crop the variants from the master with their bounding
+  boxes rather than editing each by hand.
 - The YouTube pitch-video embed (id `7AhBzJ9Yg6M`) lives in the lightbox JS in
   `sections/closing.html`; it is launched from the hero's "Watch the pitch" button
   (`[data-open-video]`).

@@ -17,6 +17,7 @@
     <meta property="og:url" content="https://flux-tech.de" />
     <meta property="twitter:card" content="summary_large_image" />
     <link rel="canonical" href="https://flux-tech.de" />
+    <link rel="icon" href="assets/images/logo-fluxtech-icon.svg" type="image/svg+xml" />
     <link
       href="https://fonts.googleapis.com/css2?display=swap&family=Poppins:ital,wght@0,400;0,600;0,700;1,400&family=Source+Code+Pro:ital,wght@0,400;0,700;1,400"
       rel="stylesheet"
@@ -91,8 +92,9 @@
         --grad: linear-gradient(31deg, #007fad 0%, #009a62 70%);
         --font-head: "Poppins", system-ui, sans-serif;
         --font-body: "Source Code Pro", ui-monospace, monospace;
-        --maxw: 54rem;
-        --maxw-wide: 72rem;
+        --maxw: 78rem; /* content shell width (desktop) */
+        --maxw-wide: 78rem; /* header bar aligns with the shell */
+        --measure: 44rem; /* readable text column (~70ch) inside the wide shell */
         --header-h: 4rem;
         --radius: 14px;
         --shadow: 0 1px 2px rgba(16, 30, 28, 0.04), 0 8px 28px rgba(16, 30, 28, 0.06);
@@ -221,19 +223,14 @@
         text-decoration: none;
         flex: 0 0 auto;
       }
-      .brand img {
-        height: 1.85rem;
+      /* Brand lockup: official SVG icon + black SVG wordmark, sized independently. */
+      .brand__icon {
+        height: 1.95rem;
         width: auto;
       }
       .brand__word {
-        font-family: var(--font-head);
-        font-weight: 700;
-        font-size: 1.15rem;
-        letter-spacing: -0.01em;
-        background: var(--grad);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
+        height: 1rem;
+        width: auto;
       }
       .primary-nav {
         margin-left: auto;
@@ -384,7 +381,9 @@
         opacity: 1;
         transform: none;
       }
-      @media (max-width: 1180px) {
+      /* Show the side dots only once the viewport is wide enough to clear the
+         content shell — otherwise they'd sit on top of the right-hand content. */
+      @media (max-width: 85em) {
         .dot-nav {
           display: none;
         }
@@ -444,6 +443,32 @@
         max-width: var(--maxw);
         margin: 0 auto;
         padding: 0 1.5rem;
+      }
+      /* Editorial two-column: heading rail on the left, content on the right.
+         Mobile-first single column; the split engages on wider viewports so the
+         layout uses the width instead of stranding everything in a narrow center. */
+      @media (min-width: 64em) {
+        .section:not(.hero) .section__inner {
+          display: grid;
+          grid-template-columns: minmax(13rem, 15rem) minmax(0, 1fr);
+          column-gap: clamp(2.5rem, 5vw, 5rem);
+          align-items: start;
+        }
+        .section__head {
+          position: sticky;
+          top: calc(var(--header-h) + 1.5rem);
+        }
+        .section__head .h-section {
+          margin-bottom: 0;
+        }
+      }
+      /* Paragraphs keep a readable measure even when the body column is wide;
+         card grids, figures, the walkthrough and the widget use the full width. */
+      .section__body > .prose {
+        max-width: var(--measure);
+      }
+      .section__body > .prose.text-center {
+        margin-inline: auto;
       }
       .section:focus {
         outline: none;
@@ -523,16 +548,6 @@
         font-size: 0.82em;
       }
 
-      /* Inline thematic cross-link ("Find out more …") */
-      .crosslink {
-        margin-top: 1.5rem;
-        font-size: 0.95rem;
-        color: var(--c-muted);
-      }
-      .crosslink a {
-        color: var(--c-teal);
-      }
-
       /* Small utilities */
       .text-center {
         text-align: center;
@@ -542,47 +557,6 @@
         width: 3.75rem;
         height: auto;
         margin: 3rem auto 1.25rem;
-      }
-
-      /* "Next" sequential affordance */
-      .next-eyebrow {
-        display: block;
-        font-family: var(--font-head);
-        font-size: 0.68rem;
-        font-weight: 600;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-        color: var(--c-muted);
-        margin-bottom: 0.3rem;
-        margin-top: 2.5rem;
-      }
-      .next-section {
-        display: inline-flex;
-        align-items: baseline;
-        gap: 0.5rem;
-        font-family: var(--font-head);
-        font-size: 0.95rem;
-        font-weight: 600;
-        text-decoration: none;
-        color: var(--c-ink);
-        border-bottom: 2px solid transparent;
-        transition: border-color 0.2s ease;
-      }
-      .next-section span {
-        background: var(--grad);
-        -webkit-background-clip: text;
-        background-clip: text;
-        color: transparent;
-      }
-      .next-section .next-arrow {
-        color: var(--c-green);
-        transition: transform 0.2s ease;
-      }
-      .next-section:hover {
-        border-color: var(--c-green);
-      }
-      .next-section:hover .next-arrow {
-        transform: translateX(4px);
       }
 
       /* ===================================================================
@@ -808,6 +782,7 @@
         grid-template-columns: 1fr;
         gap: 1.5rem;
         margin-top: 1.5rem;
+        max-width: 52rem; /* keep founder bios at a readable width on wide screens */
       }
       .member {
         display: grid;
@@ -876,7 +851,7 @@
       .step {
         position: relative;
         display: grid;
-        grid-template-columns: 4.25rem 1fr;
+        grid-template-columns: 4.75rem 1fr;
         gap: 1.4rem;
         padding-bottom: 2.5rem;
       }
@@ -919,14 +894,15 @@
         display: none;
       }
       .step__icon {
-        width: 2.4rem;
-        height: 2.4rem;
+        width: 3.25rem;
+        height: 3.25rem;
         border-radius: 50%;
-        border: 1px solid var(--c-border);
         background: #fff;
+        box-shadow: var(--shadow);
       }
       .step__body {
-        padding-top: 0.35rem;
+        padding-top: 0.5rem;
+        max-width: 44rem; /* keep step copy at a readable measure on wide screens */
       }
       .step__body .p strong,
       .step__body strong {
@@ -937,19 +913,9 @@
         color: var(--c-ink);
         margin-bottom: 0.35rem;
       }
-      .step__diagram {
-        margin-top: 1.1rem;
-        max-width: 22rem;
-      }
-      .step__diagram img {
-        width: 100%;
-        height: auto;
-        border-radius: 12px;
-        border: 1px solid var(--c-border);
-      }
       @media (max-width: 560px) {
         .step {
-          grid-template-columns: 3.25rem 1fr;
+          grid-template-columns: 3.75rem 1fr;
           gap: 1rem;
         }
         .step__num {
@@ -958,8 +924,8 @@
           font-size: 0.9rem;
         }
         .step__icon {
-          width: 1.9rem;
-          height: 1.9rem;
+          width: 2.5rem;
+          height: 2.5rem;
         }
       }
 
@@ -1105,8 +1071,8 @@
     <header class="site-header">
       <div class="site-header__bar">
         <a class="brand" href="#home" aria-label="FluxTech — home">
-          <img src="assets/images/logo-fluxtech-icon.png?v=e1d5cfd8" alt="" width="1500" height="1476" />
-          <span class="brand__word">FluxTech.</span>
+          <img class="brand__icon" src="assets/images/logo-fluxtech-icon.svg" alt="" width="363" height="357" />
+          <img class="brand__word" src="assets/images/logo-fluxtech-wordmark.svg" alt="" width="606" height="103" />
         </a>
         <nav class="primary-nav" aria-label="Primary">
           <ul>
@@ -1146,10 +1112,10 @@
         <div class="section__inner">
           <img
             class="hero__logo"
-            src="assets/images/logo-fluxtech.png?v=e1d5cfd8"
+            src="assets/images/logo-fluxtech.svg"
             alt="FluxTech"
-            width="3000"
-            height="2748"
+            width="608"
+            height="542"
           />
           <h1 id="text15" class="hero__tagline">Converting AI data centre waste heat into electricity.</h1>
           <div id="text26" class="prose hero__body reveal"><span class="p">Data centers are the energy infrastructure challenge of our time. Currently, their excess heat is vented as waste. But we see it as a fuel source.</span><span class="p">Our technology will harvest data centre heat as an asset and convert it back into electricity to power each AI data centre more efficiently and sustainably.</span><span class="p">As we move toward our MVP and initial pilots, we are building the new standard for energy recovery. <strong>Join us.</strong></span></div>
@@ -1176,66 +1142,66 @@
             />
           </div>
           <p id="text37" class="caption hero__caption">MotionLab Berlin hardtech accelerator graduates. Based at Future Energy Labs (dena, Berlin).</p>
-
-          <p class="next-eyebrow">Start here</p>
-          <a class="next-section" href="#problem"><span>The Problem.</span> <span class="next-arrow" aria-hidden="true">→</span></a>
         </div>
       </section>
       <section id="problem" class="section" tabindex="-1" aria-labelledby="text16">
         <div class="section__inner">
-          <h2 id="text16" class="h-section reveal">The Problem.</h2>
-          <div id="text07" class="prose lede reveal"><span class="p">Data centres are the engine rooms of our time, yet they are running into a hard wall: power. Jensen Huang identifies it as the single biggest bottleneck for scaling AI. Data centres consumed 415 TWh of electricity in 2024 — projected to reach 945 TWh by 2030 as AI workloads explode. That is nearly double Germany’s total annual electricity consumption.</span><span class="p">The constraint is not just total energy — it is the grid’s ability to deliver it. New data centres face multi-year waits for grid connections. Operators are hitting peak demand ceilings that limit how many racks they can fill. Every kilowatt-hour generated on-site is a kilowatt-hour not drawn from the grid — reducing dependency, lowering peak demand charges, and unlocking rack density that grid constraints currently block.</span><span class="p">Meanwhile, 10-30% of that consumed power goes to cooling, which vents heat as waste. All the while, the EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, and Germany’s Energy Efficiency Act requires new data centres to reuse waste heat from July 2026. Regulation is compounding economic pressure that already exists.</span><span class="p">The heat is there. The need for power is desperate. No viable technology bridges the two.</span></div>
+          <div class="section__head">
+            <h2 id="text16" class="h-section reveal">The Problem.</h2>
+          </div>
+          <div class="section__body">
+            <div id="text07" class="prose lede reveal"><span class="p">Data centres are the engine rooms of our time, yet they are running into a hard wall: power. Jensen Huang identifies it as the single biggest bottleneck for scaling AI. Data centres consumed 415 TWh of electricity in 2024 — projected to reach 945 TWh by 2030 as AI workloads explode. That is nearly double Germany’s total annual electricity consumption.</span><span class="p">The constraint is not just total energy — it is the grid’s ability to deliver it. New data centres face multi-year waits for grid connections. Operators are hitting peak demand ceilings that limit how many racks they can fill. Every kilowatt-hour generated on-site is a kilowatt-hour not drawn from the grid — reducing dependency, lowering peak demand charges, and unlocking rack density that grid constraints currently block.</span><span class="p">Meanwhile, 10-30% of that consumed power goes to cooling, which vents heat as waste. All the while, the EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, and Germany’s Energy Efficiency Act requires new data centres to reuse waste heat from July 2026. Regulation is compounding economic pressure that already exists.</span><span class="p">The heat is there. The need for power is desperate. No viable technology bridges the two.</span></div>
 
-          <figure class="figure figure--chart reveal">
-            <img
-              src="assets/images/chart-iea-datacenter-energy.png?v=e1d5cfd8"
-              alt="Data Centre Electricity Consumption, 2020–2030 (TWh) — IEA"
-              width="1200"
-              height="1000"
-            />
-            <figcaption id="text09" class="caption">Data Centre Electricity Consumption (2020-2030) (TWh)<br /> <sub>IEA (2025), Global data centre electricity consumption, by equipment, Base Case, 2020-2030, IEA, Paris. Licence: CC BY 4.0</sub></figcaption>
-          </figure>
+            <figure class="figure figure--chart reveal">
+              <img
+                src="assets/images/chart-iea-datacenter-energy.png?v=e1d5cfd8"
+                alt="Data Centre Electricity Consumption, 2020–2030 (TWh) — IEA"
+                width="1200"
+                height="1000"
+              />
+              <figcaption id="text09" class="caption">Data Centre Electricity Consumption (2020-2030) (TWh)<br /> <sub>IEA (2025), Global data centre electricity consumption, by equipment, Base Case, 2020-2030, IEA, Paris. Licence: CC BY 4.0</sub></figcaption>
+            </figure>
 
-          <div id="text30" class="prose reveal"><span class="p"><strong>Physics created limitations.</strong></span><span class="p">So why aren't people converting waste heat into electricity already? The barrier to recovering waste heat as an energy source has always been the "Thermodynamic Dead Zone." At 40–65°C rack output, data center heat is too cool for traditional turbines (ORC) while standard thermoelectric devices often operate at less than 1% efficiency. This physics constraint makes the conversion to electricity economically unviable for the legacy market.</span><span class="p">FluxTech is solving this. By utilizing supercritical CO₂ (sCO₂) as a working fluid, we gain the thermodynamic leverage required to operate with high efficiency in this temperature range. Combined with our proprietary AI control systems, we can close the loop by capturing the surplus heat and converting it into electricity.</span></div>
-          <p id="text04" class="prose crosslink reveal">Find out more about our solution <a href="#solution">here</a>.</p>
-
-          <p class="next-eyebrow">Next</p>
-          <a class="next-section" href="#solution"><span>The Solution.</span> <span class="next-arrow" aria-hidden="true">→</span></a>
+            <div id="text30" class="prose reveal"><span class="p"><strong>Physics created limitations.</strong></span><span class="p">So why aren't people converting waste heat into electricity already? The barrier to recovering waste heat as an energy source has always been the "Thermodynamic Dead Zone." At 40–65°C rack output, data center heat is too cool for traditional turbines (ORC) while standard thermoelectric devices often operate at less than 1% efficiency. This physics constraint makes the conversion to electricity economically unviable for the legacy market.</span><span class="p">FluxTech is solving this. By utilizing supercritical CO₂ (sCO₂) as a working fluid, we gain the thermodynamic leverage required to operate with high efficiency in this temperature range. Combined with our proprietary AI control systems, we can close the loop by capturing the surplus heat and converting it into electricity.</span></div>
+          </div>
         </div>
       </section>
       <section id="solution" class="section" tabindex="-1" aria-labelledby="text11">
         <div class="section__inner">
-          <h2 id="text11" class="h-section reveal">The Solution.</h2>
-          <div id="text36" class="prose reveal"><span class="p">FluxTech bridges the "Thermodynamic Dead Zone" by converting low-grade server heat into high-value electricity that can help power the data centre in a closed, sustainable loop. While legacy systems require temperatures above 80°C to function, our technology is intended to operate with high efficiency in the 40–65°C range common to modern data centres.</span><span class="p"><strong>The sCO₂ Advantage.</strong></span><span class="p">We utilize supercritical CO₂ (sCO₂) as a working fluid. Near its critical point, sCO₂ gains immense thermodynamic leverage: small temperature changes trigger massive state changes. This sensitivity allows us to extract energy where traditional turbines find only "waste".</span><span class="p"><strong>Engineered for Reliability.</strong></span><span class="p">Our thermoacoustic engine contains practically no moving parts. No turbines, no pistons, and minimal mechanical friction. By converting heat into acoustic waves to drive a linear alternator, we ensure operational longevity sustainably.</span><span class="p"><strong>AI-Driven Precision.</strong></span><span class="p">Operating near the CO₂ critical point is inherently nonlinear. FluxTech’s core proprietary technology utilizes real-time AI control systems to stabilize these dynamics, optimizing efficiency every second based on live operational data. This creates a technical moat: the hardware cannot function without the control system, and the system is trained on data unique to our architecture.</span><span class="p"><strong>Seamless Integration.</strong></span></div>
-          <div id="text29" class="prose feature-list reveal"><span class="p"><mark>Operational Cooling System.</mark> FluxTech is the site's cooling pathway in normal operation, sized to site load.</span><span class="p"><mark>Backup-Redundant.</mark> The existing cooling stack stays in place as backup. On fault, the engine decouples automatically and uptime is unaffected.</span><span class="p"><mark>Grid Ready.</mark> We turn a thermal liability into a measurable reduction in grid dependency.</span></div>
-          <p id="text05" class="prose crosslink reveal">Find out more about our market <a href="#market">here</a>.</p>
-
-          <p class="next-eyebrow">Next</p>
-          <a class="next-section" href="#businessmodel"><span>The Business Model.</span> <span class="next-arrow" aria-hidden="true">→</span></a>
+          <div class="section__head">
+            <h2 id="text11" class="h-section reveal">The Solution.</h2>
+          </div>
+          <div class="section__body">
+            <div id="text36" class="prose reveal"><span class="p">FluxTech bridges the "Thermodynamic Dead Zone" by converting low-grade server heat into high-value electricity that can help power the data centre in a closed, sustainable loop. While legacy systems require temperatures above 80°C to function, our technology is intended to operate with high efficiency in the 40–65°C range common to modern data centres.</span><span class="p"><strong>The sCO₂ Advantage.</strong></span><span class="p">We utilize supercritical CO₂ (sCO₂) as a working fluid. Near its critical point, sCO₂ gains immense thermodynamic leverage: small temperature changes trigger massive state changes. This sensitivity allows us to extract energy where traditional turbines find only "waste".</span><span class="p"><strong>Engineered for Reliability.</strong></span><span class="p">Our thermoacoustic engine contains practically no moving parts. No turbines, no pistons, and minimal mechanical friction. By converting heat into acoustic waves to drive a linear alternator, we ensure operational longevity sustainably.</span><span class="p"><strong>AI-Driven Precision.</strong></span><span class="p">Operating near the CO₂ critical point is inherently nonlinear. FluxTech’s core proprietary technology utilizes real-time AI control systems to stabilize these dynamics, optimizing efficiency every second based on live operational data. This creates a technical moat: the hardware cannot function without the control system, and the system is trained on data unique to our architecture.</span><span class="p"><strong>Seamless Integration.</strong></span></div>
+            <div id="text29" class="prose feature-list reveal"><span class="p"><mark>Operational Cooling System.</mark> FluxTech is the site's cooling pathway in normal operation, sized to site load.</span><span class="p"><mark>Backup-Redundant.</mark> The existing cooling stack stays in place as backup. On fault, the engine decouples automatically and uptime is unaffected.</span><span class="p"><mark>Grid Ready.</mark> We turn a thermal liability into a measurable reduction in grid dependency.</span></div>
+          </div>
         </div>
       </section>
       <section id="businessmodel" class="section" tabindex="-1" aria-labelledby="text-bm-title">
         <div class="section__inner">
-          <h2 id="text-bm-title" class="h-section reveal">The Business Model.</h2>
-          <div id="text-bm-intro" class="prose lede reveal"><span class="p"><strong>Energy as a Service.</strong></span><span class="p">We install, own, and operate the hardware. Customers pay for every kWh generated from their waste heat. All performance risk sits with FluxTech. If the engine produces nothing, the customer pays nothing.</span><span class="p">The engine modulates between electricity recovery and heat delivery, capturing whichever revenue stream is paying more.</span><span class="p">This model aligns incentives across all three stakeholders: every efficiency improvement flows directly into revenue, with no intermediary step.</span></div>
-
-          <div class="card-grid reveal">
-            <div id="text-bm-customer" class="card"><span class="p"><strong>For the Customer.</strong></span><span class="p">No capital outlay. No operational burden. Revenue from infrastructure they already own. FluxTech operates as the cooling pathway. If the engine stops, uptime is unaffected and the customer owes nothing.</span></div>
-            <div id="text-bm-fluxtech" class="card"><span class="p"><strong>For FluxTech.</strong></span><span class="p">Hardware ownership captures the full value of every efficiency gain. Revenue scales directly with technology performance. Fleet ownership enables modular upgrades in the field and circular lifecycle management — replaced units are refurbished and redeployed.</span></div>
-            <div id="text-bm-investor" class="card"><span class="p"><strong>For the Investor.</strong></span><span class="p">Recurring revenue tied to a cost the customer already pays. Performance compounds into revenue without new customer acquisition. Fleet growth enables project finance — borrowing against contracted revenue to fund expansion — reducing equity dilution in later phases.</span></div>
+          <div class="section__head">
+            <h2 id="text-bm-title" class="h-section reveal">The Business Model.</h2>
           </div>
+          <div class="section__body">
+            <div id="text-bm-intro" class="prose lede reveal"><span class="p"><strong>Energy as a Service.</strong></span><span class="p">We install, own, and operate the hardware. Customers pay for every kWh generated from their waste heat. All performance risk sits with FluxTech. If the engine produces nothing, the customer pays nothing.</span><span class="p">The engine modulates between electricity recovery and heat delivery, capturing whichever revenue stream is paying more.</span><span class="p">This model aligns incentives across all three stakeholders: every efficiency improvement flows directly into revenue, with no intermediary step.</span></div>
 
-          <div id="text-bm-pricing" class="prose reveal"><span class="p"><strong>Pricing Structure.</strong></span><span class="p">Two components: a fixed base rate covering cooling provision, agreed at signing, and a floating component tied to the market value of recovered electricity and heat passed through for reuse. The fixed component provides the revenue predictability that project finance requires. The floating component aligns incentives on the variable streams: transparent benchmarks against local market prices mean neither party can game the rate.</span></div>
-          <div id="text-bm-contracts" class="prose feature-list reveal"><span class="p"><mark>Three-year initial agreements</mark> with renegotiation at renewal. Early-phase contracts prioritise adoption speed; as the technology matures, terms shift toward longer-duration agreements suited to project finance.</span><span class="p"><mark>Zero downtime risk to the customer.</mark> If a unit is not generating electricity, the customer pays nothing. The engine decouples from the cooling loop; data centre operations are unaffected.</span><span class="p"><mark>Fleet scaling via project finance.</mark> Once units generate revenue under contract, the revenue stream becomes an asset for debt financing. Each performing cohort strengthens borrowing terms for the next. Equity funds the company through technical de-risking; growth capital increasingly comes from debt markets.</span></div>
-          <p id="text-bm-next" class="prose crosslink reveal">Find out more about how it works <a href="#physicsengineering">here</a>.</p>
+            <div class="card-grid reveal">
+              <div id="text-bm-customer" class="card"><span class="p"><strong>For the Customer.</strong></span><span class="p">No capital outlay. No operational burden. Revenue from infrastructure they already own. FluxTech operates as the cooling pathway. If the engine stops, uptime is unaffected and the customer owes nothing.</span></div>
+              <div id="text-bm-fluxtech" class="card"><span class="p"><strong>For FluxTech.</strong></span><span class="p">Hardware ownership captures the full value of every efficiency gain. Revenue scales directly with technology performance. Fleet ownership enables modular upgrades in the field and circular lifecycle management — replaced units are refurbished and redeployed.</span></div>
+              <div id="text-bm-investor" class="card"><span class="p"><strong>For the Investor.</strong></span><span class="p">Recurring revenue tied to a cost the customer already pays. Performance compounds into revenue without new customer acquisition. Fleet growth enables project finance — borrowing against contracted revenue to fund expansion — reducing equity dilution in later phases.</span></div>
+            </div>
 
-          <p class="next-eyebrow">Next</p>
-          <a class="next-section" href="#physicsengineering"><span>The Physics &amp; Engineering.</span> <span class="next-arrow" aria-hidden="true">→</span></a>
+            <div id="text-bm-pricing" class="prose reveal"><span class="p"><strong>Pricing Structure.</strong></span><span class="p">Two components: a fixed base rate covering cooling provision, agreed at signing, and a floating component tied to the market value of recovered electricity and heat passed through for reuse. The fixed component provides the revenue predictability that project finance requires. The floating component aligns incentives on the variable streams: transparent benchmarks against local market prices mean neither party can game the rate.</span></div>
+            <div id="text-bm-contracts" class="prose feature-list reveal"><span class="p"><mark>Three-year initial agreements</mark> with renegotiation at renewal. Early-phase contracts prioritise adoption speed; as the technology matures, terms shift toward longer-duration agreements suited to project finance.</span><span class="p"><mark>Zero downtime risk to the customer.</mark> If a unit is not generating electricity, the customer pays nothing. The engine decouples from the cooling loop; data centre operations are unaffected.</span><span class="p"><mark>Fleet scaling via project finance.</mark> Once units generate revenue under contract, the revenue stream becomes an asset for debt financing. Each performing cohort strengthens borrowing terms for the next. Equity funds the company through technical de-risking; growth capital increasingly comes from debt markets.</span></div>
+          </div>
         </div>
       </section>
       <section id="physicsengineering" class="section" tabindex="-1" aria-labelledby="text22">
         <div class="section__inner">
-          <h2 id="text22" class="h-section reveal">The Physics &amp; Engineering.</h2>
+          <div class="section__head">
+            <h2 id="text22" class="h-section reveal">The Physics &amp; Engineering.</h2>
+          </div>
+          <div class="section__body">
           <div id="text17" class="prose lede reveal">FluxTech's system is a closed-loop thermoacoustic engine. It connects to the data centre's cooling fluid on one side and produces electricity on the other. The sections below trace the conversion end to end.</div>
 
           <ol class="walkthrough">
@@ -1290,89 +1256,75 @@
                 <img class="step__icon" src="assets/images/icon-heat-modulation.png?v=e1d5cfd8" alt="" width="800" height="800" />
                 <span class="step__line"></span>
               </div>
-              <div class="step__body">
-                <p id="text-heatmod" class="prose"><strong>Heat Modulation.</strong><br /> Our core differentiating mechanism. Controlled, phase-locked thermal exchange synchronises heat input with the engine’s acoustic cycle, maximising energy transfer at each oscillation. This architecture has no published precedent and is the subject of our first ZIM feasibility study.</p>
-                <figure class="step__diagram">
-                  <img
-                    src="assets/images/diagram-heat-modulation.jpg?v=e1d5cfd8"
-                    alt="Phase-locked heat modulation: thermal input synchronised with the engine's acoustic cycle"
-                    width="800"
-                    height="800"
-                  />
-                </figure>
-              </div>
+              <div class="step__body"><p id="text-heatmod" class="prose"><strong>Heat Modulation.</strong><br /> Our core differentiating mechanism. Controlled, phase-locked thermal exchange synchronises heat input with the engine’s acoustic cycle, maximising energy transfer at each oscillation. This architecture has no published precedent and is the subject of our first ZIM feasibility study.</p></div>
             </li>
           </ol>
-
-          <p id="text23" class="prose crosslink reveal">Find out more about the FluxTech team <a href="#team">here</a>.</p>
-
-          <p class="next-eyebrow">Next</p>
-          <a class="next-section" href="#market"><span>The Market.</span> <span class="next-arrow" aria-hidden="true">→</span></a>
+          </div>
         </div>
       </section>
       <section id="market" class="section" tabindex="-1" aria-labelledby="text10">
         <div class="section__inner">
-          <h2 id="text10" class="h-section reveal">The Market.</h2>
-          <div id="text27" class="prose lede reveal"><span class="p">The market for FluxTech’s technology is not just large, it is structurally inevitable due to the convergence of two things: surging demand for AI and the avoided load advantage.</span><span class="p">The scale of the opportunity is defined by the explosive growth of data centres, which are projected to consume 945 TWh of electricity by 2030, driven largely by energy-intensive AI workloads.</span><span class="p">The avoided load advantage is the ability to generate power on-site to bypass grid capacity constraints. By reducing the total draw from the grid, operators can lower peak demand charges that currently limit rack density.</span><span class="p">We are seeing immediate market pull for three specific reasons.</span></div>
+          <div class="section__head">
+            <h2 id="text10" class="h-section reveal">The Market.</h2>
+          </div>
+          <div class="section__body">
+            <div id="text27" class="prose lede reveal"><span class="p">The market for FluxTech’s technology is not just large, it is structurally inevitable due to the convergence of two things: surging demand for AI and the avoided load advantage.</span><span class="p">The scale of the opportunity is defined by the explosive growth of data centres, which are projected to consume 945 TWh of electricity by 2030, driven largely by energy-intensive AI workloads.</span><span class="p">The avoided load advantage is the ability to generate power on-site to bypass grid capacity constraints. By reducing the total draw from the grid, operators can lower peak demand charges that currently limit rack density.</span><span class="p">We are seeing immediate market pull for three specific reasons.</span></div>
 
-          <div class="card-grid reveal">
-            <div class="card">
-              <img class="card__icon" src="assets/images/icon-economic-compulsion.jpg?v=e1d5cfd8" alt="" width="205" height="205" />
-              <p id="text12"><strong>Economic Compulsion.</strong><br /> High energy prices, particularly in Europe, make efficiency economically valuable independent of regulation. In our initial addressable segment alone, every percentage point of engine efficiency adds approximately €4M in annual revenue at scale. In grid-constrained markets like Frankfurt and London, every recovered MW unlocks compute capacity worth far more than retail electricity.</p>
-            </div>
-            <div class="card">
-              <img class="card__icon" src="assets/images/icon-commercial-validation.jpg?v=e1d5cfd8" alt="" width="203" height="203" />
-              <p id="text24"><strong>Commercial Validation.</strong><br /> We have already secured three signed LOIs with deployment partners Deep Green, Leafcloud, and Heata, whose deployment pipelines represent up to 2.6 TWh of recoverable low-temperature waste heat, anchored by Deep Green's publicly stated 300 MW buildout across the UK and North America.</p>
-            </div>
-            <div class="card">
-              <img class="card__icon" src="assets/images/icon-regulation-mandates.jpg?v=e1d5cfd8" alt="" width="205" height="205" />
-              <p id="text25"><strong>Binding Sustainability Mandates.</strong><br /> The EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, with minimum standards planned for 2026. Germany’s Energy Efficiency Act requires new data centres to reuse waste heat — creating direct regulatory demand for energy recovery infrastructure.</p>
+            <div class="card-grid reveal">
+              <div class="card">
+                <img class="card__icon" src="assets/images/icon-economic-compulsion.jpg?v=e1d5cfd8" alt="" width="205" height="205" />
+                <p id="text12"><strong>Economic Compulsion.</strong><br /> High energy prices, particularly in Europe, make efficiency economically valuable independent of regulation. In our initial addressable segment alone, every percentage point of engine efficiency adds approximately €4M in annual revenue at scale. In grid-constrained markets like Frankfurt and London, every recovered MW unlocks compute capacity worth far more than retail electricity.</p>
+              </div>
+              <div class="card">
+                <img class="card__icon" src="assets/images/icon-commercial-validation.jpg?v=e1d5cfd8" alt="" width="203" height="203" />
+                <p id="text24"><strong>Commercial Validation.</strong><br /> We have already secured three signed LOIs with deployment partners Deep Green, Leafcloud, and Heata, whose deployment pipelines represent up to 2.6 TWh of recoverable low-temperature waste heat, anchored by Deep Green's publicly stated 300 MW buildout across the UK and North America.</p>
+              </div>
+              <div class="card">
+                <img class="card__icon" src="assets/images/icon-regulation-mandates.jpg?v=e1d5cfd8" alt="" width="205" height="205" />
+                <p id="text25"><strong>Binding Sustainability Mandates.</strong><br /> The EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, with minimum standards planned for 2026. Germany’s Energy Efficiency Act requires new data centres to reuse waste heat — creating direct regulatory demand for energy recovery infrastructure.</p>
+              </div>
             </div>
           </div>
-
-          <p id="text31" class="prose crosslink reveal">Find out more about our business model <a href="#businessmodel">here</a>.</p>
-
-          <p class="next-eyebrow">Next</p>
-          <a class="next-section" href="#team"><span>The Team.</span> <span class="next-arrow" aria-hidden="true">→</span></a>
         </div>
       </section>
       <section id="team" class="section" tabindex="-1" aria-labelledby="text32">
         <div class="section__inner">
-          <h2 id="text32" class="h-section reveal">The Team.</h2>
-
-          <div class="team-grid">
-            <article class="member reveal">
-              <img
-                class="member__photo"
-                src="assets/images/headshot-john.jpg?v=e1d5cfd8"
-                alt="John Therrien"
-                width="577"
-                height="577"
-              />
-              <div id="text08" class="member__bio"><span class="p"><strong>John Therrien | Co-Founder &amp; Engine Architect.</strong></span><span class="p"><mark>Where thermodynamics meets control theory.</mark></span><span class="p">John holds a double major in Physics and Mechanical Engineering from UC Santa Barbara — a five-year program spanning two colleges. That dual foundation converges directly in the nonlinear physics at the core of FluxTech’s engine architecture.</span><span class="p">Before FluxTech, John spent five years as a professional musician, an experience that sharpened pattern recognition, rapid iteration, and comfort with ambiguity. The engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion — a problem the industry had written off.</span><span class="p"><em>“This whole field of problems keeps me awake at night in the best way possible; it’s truly fascinating. The ecological impact feels tangible, the economic side gains strength every time I check the news, and I love where it sits with compelling interdisciplinary depth. It’s the perfect mix to drive the kind of obsession necessary for a successful startup.”</em></span></div>
-            </article>
-            <article class="member reveal">
-              <img
-                class="member__photo"
-                src="assets/images/headshot-florian.jpg?v=e1d5cfd8"
-                alt="Florian Schmack"
-                width="577"
-                height="577"
-              />
-              <div id="text14" class="member__bio"><span class="p"><strong>Florian Schmack | Co-Founder &amp; Materials Lead.</strong></span><span class="p"><mark>Materials define limits. Engineering overcomes them.</mark></span><span class="p">Flo holds a master’s degree in materials science from TU Berlin, specialising in light metals and high-purity synthesis. At PSC Technologies, he pioneered a method for identifying silicon impurities below 0.1% — a breakthrough that eliminated false positives in battery testing and set a new standard for material analysis.</span><span class="p">In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specialising in Machine Learning and Cloud Computing. This intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ systems and the construction of the TRL 4 research platform.</span><span class="p"><em>“We are not just managing heat, we are harvesting a previously invisible resource. Let’s turn the waste of today into the power of tomorrow.”</em></span></div>
-            </article>
+          <div class="section__head">
+            <h2 id="text32" class="h-section reveal">The Team.</h2>
           </div>
-
-          <p id="text13" class="prose crosslink reveal">Find out more about what's next for FluxTech <a href="#ask">here</a>.</p>
-
-          <p class="next-eyebrow">Next</p>
-          <a class="next-section" href="#ask"><span>The Ask.</span> <span class="next-arrow" aria-hidden="true">→</span></a>
+          <div class="section__body">
+            <div class="team-grid">
+              <article class="member reveal">
+                <img
+                  class="member__photo"
+                  src="assets/images/headshot-john.jpg?v=e1d5cfd8"
+                  alt="John Therrien"
+                  width="577"
+                  height="577"
+                />
+                <div id="text08" class="member__bio"><span class="p"><strong>John Therrien | Co-Founder &amp; Engine Architect.</strong></span><span class="p"><mark>Where thermodynamics meets control theory.</mark></span><span class="p">John holds a double major in Physics and Mechanical Engineering from UC Santa Barbara — a five-year program spanning two colleges. That dual foundation converges directly in the nonlinear physics at the core of FluxTech’s engine architecture.</span><span class="p">Before FluxTech, John spent five years as a professional musician, an experience that sharpened pattern recognition, rapid iteration, and comfort with ambiguity. The engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion — a problem the industry had written off.</span><span class="p"><em>“This whole field of problems keeps me awake at night in the best way possible; it’s truly fascinating. The ecological impact feels tangible, the economic side gains strength every time I check the news, and I love where it sits with compelling interdisciplinary depth. It’s a perfect engine to drive the kind of obsession necessary for a successful startup.”</em></span></div>
+              </article>
+              <article class="member reveal">
+                <img
+                  class="member__photo"
+                  src="assets/images/headshot-florian.jpg?v=e1d5cfd8"
+                  alt="Florian Schmack"
+                  width="577"
+                  height="577"
+                />
+                <div id="text14" class="member__bio"><span class="p"><strong>Florian Schmack | Co-Founder &amp; Materials Lead.</strong></span><span class="p"><mark>Materials define limits. Engineering overcomes them.</mark></span><span class="p">Flo holds a master’s degree in materials science from TU Berlin, specialising in light metals and high-purity synthesis. At PSC Technologies, he pioneered a method for identifying silicon impurities below 0.1% — a breakthrough that eliminated false positives in battery testing and set a new standard for material analysis.</span><span class="p">In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specialising in Machine Learning and Cloud Computing. This intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ systems and the construction of the TRL 4 research platform.</span><span class="p"><em>“We are not just managing heat, we are harvesting a previously invisible resource. Let’s turn the waste of today into the power of tomorrow.”</em></span></div>
+              </article>
+            </div>
+          </div>
         </div>
       </section>
       <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.js"></script>
       <section id="ask" class="section" tabindex="-1" aria-labelledby="text03">
         <div class="section__inner">
-          <h2 id="text03" class="h-section reveal">The Ask.</h2>
+          <div class="section__head">
+            <h2 id="text03" class="h-section reveal">The Ask.</h2>
+          </div>
+          <div class="section__body">
           <div id="text02" class="prose lede reveal"><span class="p"><strong>Strategic Investment Round.</strong></span><span class="p">FluxTech is raising up to €500k to join committed capital.</span><span class="p">This is a leverage round. Every euro of equity activates a cascade of non-dilutive grants, scaling total deployment from ~€460k to ~€1.2M depending on round size.</span></div>
           <div id="text39" class="prose reveal"><span class="p"><strong>The Funding Cascade.</strong></span><span class="p">This capital unlocks two parallel federal workstreams that transition FluxTech from feasibility to industrial readiness:</span></div>
           <p id="text06" class="prose" style="display: none"><span class="p"><mark>GründungsBONUS Plus (Berlin)</mark>: Triggers up to €50k in matched grant funding directly from this private raise.</span><span class="p"><mark>Two ZIM Feasibility Studies (Federal)</mark>: Provides up to €175k in R&amp;D funding to validate our two primary technical risks.</span><span class="p"><mark>ZIM R&amp;D Kooperationsprojekt (Federal)</mark>: Scales with co-funding capacity. Up to €550k total for FluxTech across two R&amp;D projects plus up to €560k total for research partners.</span></p>
@@ -1709,15 +1661,13 @@
 
           <img
             class="ask-mark reveal"
-            src="assets/images/logo-fluxtech-icon.png?v=e1d5cfd8"
+            src="assets/images/logo-fluxtech-icon.svg"
             alt="FluxTech"
-            width="1500"
-            height="1476"
+            width="363"
+            height="357"
           />
           <div id="text33" class="prose text-center reveal"><span class="p">We are looking for a partner who understands the value of entering at maximum leverage.</span><span class="p"><strong>Join Us.</strong></span><span class="p">Email <a href="mailto:john@flux-tech.de">john@flux-tech.de</a> to set up a meeting.</span></div>
-
-          <p class="next-eyebrow">Back to where you started</p>
-          <a class="next-section" href="#home"><span>Return to top.</span> <span class="next-arrow" aria-hidden="true">↑</span></a>
+          </div>
         </div>
       </section>
     </main>

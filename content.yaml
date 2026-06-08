@@ -53,8 +53,6 @@ text30: |
 
   FluxTech is solving this. By utilizing supercritical CO₂ (sCO₂) as a working fluid, we gain the thermodynamic leverage required to operate with high efficiency in this temperature range. Combined with our proprietary AI control systems, we can close the loop by capturing the surplus heat and converting it into electricity.
 
-text04: "Find out more about our solution [here](#solution)."
-
 # ---------------------------------------------------------------------------
 # Solution Section
 # ---------------------------------------------------------------------------
@@ -84,8 +82,6 @@ text29: |
   ==Backup-Redundant.== The existing cooling stack stays in place as backup. On fault, the engine decouples automatically and uptime is unaffected.
 
   ==Grid Ready.== We turn a thermal liability into a measurable reduction in grid dependency.
-
-text05: "Find out more about our market [here](#market)."
 
 # ---------------------------------------------------------------------------
 # Business Model Section
@@ -129,8 +125,6 @@ text-bm-contracts: |
 
   ==Fleet scaling via project finance.== Once units generate revenue under contract, the revenue stream becomes an asset for debt financing. Each performing cohort strengthens borrowing terms for the next. Equity funds the company through technical de-risking; growth capital increasingly comes from debt markets.
 
-text-bm-next: "Find out more about how it works [here](#physicsengineering)."
-
 # ---------------------------------------------------------------------------
 # Physics & Engineering Section
 # ---------------------------------------------------------------------------
@@ -157,8 +151,6 @@ text28: |
 text-heatmod: |
   **Heat Modulation.**<br /> Our core differentiating mechanism. Controlled, phase-locked thermal exchange synchronises heat input with the engine’s acoustic cycle, maximising energy transfer at each oscillation. This architecture has no published precedent and is the subject of our first ZIM feasibility study.
 
-text23: "Find out more about the FluxTech team [here](#team)."
-
 # ---------------------------------------------------------------------------
 # Market Section
 # ---------------------------------------------------------------------------
@@ -182,8 +174,6 @@ text24: |
 text25: |
   **Binding Sustainability Mandates.**<br /> The EU’s Energy Efficiency Directive mandates energy performance reporting for data centres, with minimum standards planned for 2026. Germany’s Energy Efficiency Act requires new data centres to reuse waste heat — creating direct regulatory demand for energy recovery infrastructure.
 
-text31: "Find out more about our business model [here](#businessmodel)."
-
 # ---------------------------------------------------------------------------
 # Team Section
 # ---------------------------------------------------------------------------
@@ -199,7 +189,7 @@ text08: |
 
   Before FluxTech, John spent five years as a professional musician, an experience that sharpened pattern recognition, rapid iteration, and comfort with ambiguity. The engine architecture, working fluid choice, and AI control approach emerged from independent inquiry into low-temperature heat conversion — a problem the industry had written off.
 
-  *“This whole field of problems keeps me awake at night in the best way possible; it’s truly fascinating. The ecological impact feels tangible, the economic side gains strength every time I check the news, and I love where it sits with compelling interdisciplinary depth. It’s the perfect mix to drive the kind of obsession necessary for a successful startup.”*
+  *“This whole field of problems keeps me awake at night in the best way possible; it’s truly fascinating. The ecological impact feels tangible, the economic side gains strength every time I check the news, and I love where it sits with compelling interdisciplinary depth. It’s a perfect engine to drive the kind of obsession necessary for a successful startup.”*
 text14: |
   **Florian Schmack | Co-Founder & Materials Lead.**
 
@@ -210,8 +200,6 @@ text14: |
   In 2024, Florian integrated his materials expertise with advanced data science at the WBS Coding School, specialising in Machine Learning and Cloud Computing. This intersection of physical metallurgy and predictive analytics is the engine behind FluxTech’s proprietary control systems. Today, Flo leads the technical development of our supercritical CO₂ systems and the construction of the TRL 4 research platform.
 
   *“We are not just managing heat, we are harvesting a previously invisible resource. Let’s turn the waste of today into the power of tomorrow.”*
-text13: "Find out more about what's next for FluxTech [here](#ask)."
-
 # ---------------------------------------------------------------------------
 # Ask Section
 # ---------------------------------------------------------------------------
